@@ -1,0 +1,53 @@
+/*account-information*/
+.account-info li a {
+}
+
+.account-info li:not(:last-child) a::after {
+    content: "|";
+    margin-left: 1rem;
+}
+
+/*main*/
+main {
+    position: relative;
+}
+.icon{
+    vertical-align: middle;
+}
+.nav-info {
+    position: absolute;
+    top: 1rem;
+    width: inherit;
+}
+.nav-info .nav-list{
+    display: inline-block;
+   float: right;
+
+}
+.nav-info .nav-list ul li {
+    display: inline-block;
+    margin: 1.5rem;
+    font-weight: 600;
+}
+.nav-info .nav-list ul li:hover{
+    color: red;
+}
+.nav-display {
+    position: absolute;
+    top: 0;
+}
+.nav-display ul li{
+    margin: 0 2rem;
+    display: inline-block;
+}
+
+    /*banner-add*/
+.banner {
+    width: 100%;
+    overflow: hidden;
+}
+
+.banner img {
+    /*display: none;*/
+    width: inherit;
+}

@@ -19,7 +19,7 @@
         </div>
         <div class="right fr">
             <!--<div class="gouwuche fr"><a href="">购物车</a></div>-->
-            <div class="fr">
+            <div class="fr ">
                 <ul class="account-info">
                     <li><a href="#">SIGN IN</a></li>
                     <li><a href="#">SIGN OUT</a></li>
@@ -32,66 +32,49 @@
 </header>
 <!--end header -->
 
+<nav>
+
+</nav>
+
 <main>
     <div class="banner">
-        <img id="banner" src="#"/>
+        <img id="banner" src="./image/desklampnew.jpg"/>
     </div>
-    <script type="text/javascript" charset="utf-8" async defer>
-            var pic = document.getElementById("banner");
-            var opacity = 1.0;
-            var flag = 1;
-            var n=1;
-            setInterval(function(){
-                switch(flag){
-                    case 1:
-                    console.log(opacity);
-                    if(opacity>0.8){
-                        opacity=opacity-0.005;
-                        pic.style.opacity = opacity;
-                    }
-                    else{
-                        opacity=opacity-0.1;
-                        pic.style.opacity = opacity;
-                    }
-                    if(opacity<=0){
-                        // opacity=1.0;
-                        n=switch_pic(n)
-                        flag=2;
-                    }
-                    break;
-                    case 2:
-                    console.log(opacity);
-                        if(opacity<0.8){
-                        opacity=opacity+0.1;
-                        pic.style.opacity = opacity;
-                    }
-                    else{
-                        opacity=opacity+0.05;
-                        pic.style.opacity = opacity;
-                    }
-                    if(opacity>=1){
-                        // opacity=1.0;
-                        // switch_pic(n+1)
-                        flag=1;
-                    }
-
-                    break;
-                    default:
-                    break;
-                }
-                
-            },100);
-
-            function switch_pic(n){
-                console.log(n);
-                switch(n){
-                    case 1:pic.setAttribute("src","./image/desklampnew.jpg");n++;break;
-                    default:pic.setAttribute("src","./image/plugnew.jpg");n=1;break;
-                }
-                return n;
-            }
-        </script>
-
+    <script type="text/javascript" src="./js/banner.js"></script>
+    <nav class="w">
+        <div class="nav-info">
+            <img class="icon" src="./image/logo_top.png">
+            <div class="nav-list">
+                <ul>
+                    <li>Stream TV</li>
+                    <li>Smart Devices</li>
+                    <li>OutDoor</li>
+                    <li>Audio</li>
+                    <li>Others</li>
+                </ul>
+            </div>
+        </div>
+        <div class="nav-display">
+            <ul>
+                <li><img src="#">
+                    <h1>xxx</h1>
+                </li>
+                <li>
+                    <img src="#">
+                    <h1>xxx</h1>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--<div class="title">-->
+    <!--<h3>xxxxx</h3>-->
+    <!--<p>xxxxxxxx</p>-->
+    <!--<div class="ml40">w-->
+    <!--<div class="w">-->
+    <!--<a href="#">xxxx</a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
 </main>
 
 </body>
