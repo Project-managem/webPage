@@ -1,3 +1,9 @@
+.invisible{
+    display: none;
+}
+.visible{
+    display: block;
+}
 /*account-information*/
 .account-info li a {
 }
@@ -14,34 +20,50 @@ main {
 .icon{
     vertical-align: middle;
 }
-.nav-info {
-    position: absolute;
-    top: 1rem;
-    width: inherit;
+.nav-bg{
+ position: absolute;
+ top: 0;
+ padding-top:1rem;  
+ background-color: white;
+ width: 100%
 }
-.nav-info .nav-list{
+.nav-bg .nav-info {
+    width: 80%;
+    margin: 0 auto;
+
+    
+}
+.nav-bg .nav-info .nav-list{
     display: inline-block;
-   float: right;
+    float: right;
 
 }
-.nav-info .nav-list ul li {
+
+.nav-bg .nav-info .nav-list ul li {
     display: inline-block;
     margin: 1.5rem;
     font-weight: 600;
+    transition: color 0.5s;
 }
-.nav-info .nav-list ul li:hover{
+.nav-bg .nav-list ul li:hover{
     color: red;
 }
-.nav-display {
-    position: absolute;
-    top: 0;
+.nav-bg .nav-display {
+    margin-top:2rem; 
+    transition: margin-bottom 0.5s;
 }
-.nav-display ul li{
-    margin: 0 2rem;
+.nav-bg .nav-display ul li{
     display: inline-block;
+    width: 20%;
 }
-
-    /*banner-add*/
+.nav-bg .nav-display ul li img{
+    width:50%;
+}
+.nav-bg .nav-display ul li h3{
+    width: 100px;
+    align-items: center;
+}
+/*banner-add*/
 .banner {
     width: 100%;
     overflow: hidden;

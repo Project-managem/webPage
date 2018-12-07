@@ -5,7 +5,7 @@ var n=1;
 setInterval(function(){
     switch(flag){
         case 1:
-            console.log(opacity);
+            // console.log(opacity);
             if(opacity>0.8){
                 opacity=opacity-0.005;
                 pic.style.opacity = opacity;
@@ -21,7 +21,7 @@ setInterval(function(){
             }
             break;
         case 2:
-            console.log(opacity);
+            // console.log(opacity);
             if(opacity<0.8){
                 opacity=opacity+0.1;
                 pic.style.opacity = opacity;
@@ -44,7 +44,7 @@ setInterval(function(){
 },100);
 
 function switch_pic(n){
-    console.log(n);
+    // console.log(n);
     switch(n){
         case 1:pic.setAttribute("src","./image/desklampnew.jpg");n++;break;
         default:pic.setAttribute("src","./image/plugnew.jpg");n=1;break;
