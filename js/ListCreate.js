@@ -1,4 +1,4 @@
-function returnProductID()
+function returnProductID(jObj)
 {
 
 }
@@ -18,29 +18,29 @@ function createProductID(jObj, parentObj)
     return ProductIdDiv;
 }
 
-function createImgDiv(jObj)//参数应为json对象
+function createImgDiv(jObj, parentObj)//参数应为json对象
 {
     var divObj = document.createElement("div");
     var itemAddr = document.createElement("a");
     var picAddr = document.createElement("img");
     divObj.className = "sub_mingxing";
-    itemAddr.href = "xiangqing.html";//jObj.itemURL;
     //itemAddr.target = "_blank";
     itemAddr.onclick = returnProductID();
     picAddr.src = jObj.pictures[0].productPictureFilepath;
     picAddr.alt = "";
     divObj.appendChild(itemAddr);
     itemAddr.appendChild(picAddr);
+    itemAddr.href = "xiangqing.html?itemid=" + parentObj.childNodes[0].innerHTML;//jObj.itemURL;
     return divObj;
 }
 
-function createItemName(jObj)//参数应为json对象
+function createItemName(jObj, parentObj)//参数应为json对象
 {
     var divObj = document.createElement("div");
     var itemAddr = document.createElement("a");
     itemAddr.innerHTML = jObj.productName;
     divObj.className = "pinpai";
-    itemAddr.href = "xiangqing.html";//jObj.itemURL;
+    itemAddr.href = "xiangqing.html?itemid=" + parentObj.childNodes[0].innerHTML;//jObj.itemURL;
     //itemAddr.target = "_blank";
     itemAddr.onclick = returnProductID();
     divObj.appendChild(itemAddr);
@@ -86,9 +86,9 @@ function createColDiv(jObj, parentDiv, i)//传入的是json对象和父Div对象
 
     var productID = createProductID(jObj, divObj);
     divObj.appendChild(productID);
-    var picDiv = createImgDiv(jObj);
+    var picDiv = createImgDiv(jObj, divObj);
     divObj.appendChild(picDiv);
-    var nameDiv = createItemName(jObj);
+    var nameDiv = createItemName(jObj, divObj);
     divObj.appendChild(nameDiv);
     var briefInfo = createDescription(jObj);
     divObj.appendChild(briefInfo);
