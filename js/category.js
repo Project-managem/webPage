@@ -5,8 +5,9 @@
 
 
 $(".nav-list ul li").each(function(index, el) {
-	el.mouseenter(function(event) {
+	$(el).mouseenter(function(event) {
 		/* Act on the event */
+		console.log(index);
 		$(".nav-display").eq(index).fadeIn("slow");
 	});
 });

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="order by dede58.com"/>
+    <title>Search Result</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/ListCreate.js"></script>
+</head>
+<body>
+<header>
+    <div class="top center">
+        <div class="left fl">
+            <div class="fl">
+                <ul>
+                    <li><a href="index.html" style="font-family: Tahoma, sans-serif;font-size:24px">PARKnSHOP</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="right fr">
+            <!--<div class="gouwuche fr"><a href="">购物车</a></div>-->
+            <div class="fr ">
+                <ul>
+                    <li><a href="#" style="font-family: Tahoma, sans-serif;">SIGN IN</a></li>
+                    <li><a href="#" style="font-family: Tahoma, sans-serif;">SIGN OUT</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</header>
+<script>
+    window.onload = function () {
+        functionTest(true);
+    }
+</script>
+<div class="banner_x center">
+    <div class="nav fl">
+        <ul>
+            <li><a href="./liebiao.html" target="_blank">Stream TV</a></li>
+            <li><a href="">Smart Devices</a></li>
+            <li><a href="">OutDoor</a></li>
+            <li><a href="">Audio</a></li>
+            <li><a href="">Others</a></li>
+        </ul>
+    </div>
+    <div class="search fr">
+        <form action="" method="post">
+            <div class="text fl">
+                <input type="text" class="shuru"  placeholder="SearchHere" id="SearchBar">
+            </div>
+            <div class="submit fl">
+                <input type="submit" class="sousuo" value="搜索" id="SearchButton"/>
+            </div>
+            <div class="clear"></div>
+        </form>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div class="danpin center" id="SearchRes">
+
+    <div class="biaoti center" onclick="functionTest(false)">Search Result of: </div>
+
+</div>
+</body>
+</html>

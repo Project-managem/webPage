@@ -1,0 +1,12 @@
+.banner {
+	overflow: hidden;
+	width: 986px;
+	display: inline-block;
+}
+
+.banner img {
+	/*display: none;*/
+	height: 410px;
+	z-index: -1;
+	width: inherit;
+}
