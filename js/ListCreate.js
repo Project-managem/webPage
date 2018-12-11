@@ -26,11 +26,11 @@ function createImgDiv(jObj, parentObj)//参数应为json对象
     divObj.className = "sub_mingxing";
     //itemAddr.target = "_blank";
     itemAddr.onclick = returnProductID();
-    picAddr.src = jObj.pictures[0].productPictureFilepath;
+    picAddr.src = "."+jObj.pictures[0].productPictureFilepath;
     picAddr.alt = "";
     divObj.appendChild(itemAddr);
     itemAddr.appendChild(picAddr);
-    itemAddr.href = "xiangqing.html?itemid=" + parentObj.childNodes[0].innerHTML;//jObj.itemURL;
+    itemAddr.href = "customer/getProductDetail.do?productId=" + parentObj.childNodes[0].innerHTML;//jObj.itemURL;
     return divObj;
 }
 
@@ -104,15 +104,16 @@ function createRowDiv(jObj, m)  //参数为json对象和开始读取的位置，
     var rowDiv = document.createElement("div");
     var n = m;
     rowDiv.className = "main center mb20";
-    rowDiv.id = parentDiv.childNodes.length;
 
-    for(var i = n; i < jObj.objList.length || i < (n + 5); i++)
+    for(var i = n; i < jObj.objList.length && i < (n + 5); i++)
     {
-        var colDiv = createColDiv(jObj.objList[0], parentDiv, m++);
+        var colDiv = createColDiv(jObj.objList[i], parentDiv, m++);
         rowDiv.appendChild(colDiv);
     }
 
     parentDiv.appendChild(rowDiv);
+    rowDiv.id = parentDiv.childNodes.length - 3;
+    //var rowChild = rowDiv.childNodes.length;
     return m;//返回创建到的商品序号
 }
 
@@ -127,7 +128,7 @@ function createList(jObj)
     else
         row = parseInt(jObj.objList.length / 5);
 
-    for(var i = 0; i < row + 1; i++)
+    for(var i = 0; i < row; i++)
     {
         //if(document.getElementById("SearchRes").childNodes.length < 5)
             m = createRowDiv(jObj, m);
@@ -135,7 +136,7 @@ function createList(jObj)
 
 }
 
-function functionTest()
+function functionTest(n)
 {
     var jsonString = {
         "allPageNum": "1",
@@ -157,7 +158,7 @@ function functionTest()
                 "pictures": [
                     {
                         "productId": "1",
-                        "productPictureFilepath": "./image/liebiao_xiaomint2.jpg"
+                        "productPictureFilepath": "./image/banner.jpg"
                     },
                     {
                         "productId": "1",
@@ -167,22 +168,44 @@ function functionTest()
             }
         ]
     };
+
+    var jsonString2 = {"allPageNum":1,"pageSize":10,"currentPage":1,"objList":[{"productId":1,"shopId":1,"shoptypeId":1,"productLocationId":1,"productName":"青年文摘","productType":"书籍","productPrice":"20","productNum":10,"productCreatedate":"Dec 4, 2018 12:00:00 AM","productStatus":1,"productDescription":"123","pictures":[{"productId":1,"productPictureFilepath":"/image/qingnianwenzai.jpg"},{"productId":1,"productPictureFilepath":"/image/wenzai.jpg"}]},{"productId":8,"shopId":1,"shoptypeId":1,"productLocationId":1,"productName":"新青年","productType":"杂志","productPrice":"18","productNum":13,"productCreatedate":"Dec 10, 2018 12:00:00 AM","productStatus":1,"productDescription":"你不可缺少的杂志","pictures":[{"productId":8,"productPictureFilepath":"/image/qingnianwenzai.jpg"},{"productId":8,"productPictureFilepath":"/image/wenzai.jpg"}]}]};
+
     //var jObj = JSON.parse(jsonString);
-    createList(jsonString);
+    if(n)
+        createList(jsonString2);
+    else
+        listAppend(jsonString2);
 }
 
 function listAppend(jObj)
 {
     //追加商品列表
+    var tempId = document.getElementById("SearchRes").lastChild.lastChild.id;
+    var m = parseInt(tempId.substr(7, tempId.length - 7)) + 1;
+    //默认一行有5个商品
+    var row;
+    if(jObj.objList.length % 5)
+        row = parseInt(jObj.objList.length / 5) + 1;
+    else
+        row = parseInt(jObj.objList.length / 5);
 
+    for(var i = 0; i < row; i++)
+    {
+        //if(document.getElementById("SearchRes").childNodes.length < 5)
+        m = createRowDiv(jObj, m);
+    }
 }
 
+var loadInStart = false;
 function callServer()
 {
+    if(loadInStart) return;
+    loadInStart = true;
     //初次获取商品数据，默认一页有4row+6col
     var keyword = toGetSearchKeyword();
     //var keyword = toGetSearchKeywordByCookie();
-    var url = "ajaxResult?search=" + keyword;
+    var url = "customer/searchProducts.do";
 
     var xmlHttp;
     if (window.XMLHttpRequest)
@@ -196,8 +219,11 @@ function callServer()
 
     xmlHttp.onreadystatechange = function()
     {
-        var jObj = JSON.parse(xmlHttp.responseText);
-        createList(jObj);
+        if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+        {
+            var jObj = JSON.parse(xmlHttp.responseText);
+            createList(jObj);
+        }
     }
     xmlHttp.open("GET", url, true);
     xmlHttp.send();
@@ -223,4 +249,33 @@ function toGetSearchKeywordByCookie()
 {
     var param = $.cookie("Search");
     return param;
+}
+
+//作为一个对象的w和h属性返回视口的尺寸
+function getViewportSize(w){
+    //使用指定的窗口， 如果不带参数则使用当前窗口
+    w = w || window;
+
+    //除了IE8及更早的版本以外，其他浏览器都能用
+    if(w.innerWidth != null)
+        return {w: w.innerWidth, h: w.innerHeight};
+
+    //对标准模式下的IE（或任意浏览器）
+    var d = w.document;
+    if(document.compatMode == "CSS1Compat")
+        return {w: d.documentElement.clientWidth, h: d.documentElement.clientHeight};
+
+    //对怪异模式下的浏览器
+    return {w: d.body.clientWidth, h: d.body.clientHeight};
+}
+
+function isScrollToPageBottom(){
+    //文档高度
+    var documentHeight = document.documentElement.offsetHeight;
+    var viewPortHeight = getViewportSize().h;
+    var scrollHeight = window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop || 0;
+
+    return documentHeight - viewPortHeight - scrollHeight < 20;
 }
