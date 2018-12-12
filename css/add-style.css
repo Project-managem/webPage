@@ -18,7 +18,7 @@ header h1{
 
 .banner .banner-button {
     position: absolute;
-    z-index: 2;
+    z-index: 1;
     bottom: 10px;
     left: 420px;
 }
@@ -73,6 +73,7 @@ header .top .right a img {
 }
 
 .banner_x .search input {
+	display: inline-block;
     /*color: white;*/
     height: 30px;
     width: 200px;

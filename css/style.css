@@ -43,18 +43,18 @@ a{border:none;text-decoration: none;color:#000;}
 .banner_x .nav ul li a{display:inline-block;color: #000;font-size: 16px;padding: 0 10px;}
 .banner_x .nav ul li a:hover{color: rgb(255,103,0); }
 .banner_x .search{width: 308px;height: 100px;line-height: 100px;}
-.banner_x .search .text{width: 250px;height:50px;line-height: 50px;font-size: 12px;margin-top: 25px;border:1px solid #ccc;}
+/*.banner_x .search .text{width: 250px;height:50px;line-height: 50px;font-size: 12px;margin-top: 25px;border:1px solid #ccc;}
 .banner_x .search .text:hover{border-color: #ff6700;}
 .banner_x .search .text .shuru{border: none;width: 250px;height: 50px;}
 .banner_x .search .submit{width: 50px;height:50px;line-height: 50px;text-align:center;font-size: 12px;margin-top: 25px;border:1px solid #ccc;}
 .banner_x .search .submit .sousuo{letter-spacing:3px;text-align:center;width: 50px;height:50px;border: none;background: none;cursor:pointer;}
-.banner_x .search .submit:hover{border-color: #ff6700;color:#ff6700;} 
+.banner_x .search .submit:hover{border-color: #ff6700;color:#ff6700;} */
 /*banner_y*/
 .banner_y{width:1226px;height:460px;}
 .banner_y .nav{width: 234px;height: 460px;background: rgb(12,12,19);display: inline-block;}
 .banner_y .nav ul{padding: 20px 0;position:relative;}
 .banner_y .nav ul li{display: block;width: 174px;height: 40px;line-height:40px;font-size: 14px;padding: 0 30px;}
-.banner_y .nav ul li .pop{width: 800px;height: 460px;background: #fff;position:absolute;left:234px;top:0px;display: none;}
+.banner_y .nav ul li .pop{width: 600px;height: 460px;background: #fff;position:absolute;left:234px;top:0px;display: none;}
 .banner_y .nav ul li:hover .pop{display: block;box-shadow: 2px 3px 5px #ccc; border-top: 1px solid #ccc;z-index: 2;}
 .banner_y .nav ul li .pop .left{width: 265px;height: 460px;background: #fff;}
 .banner_y .nav ul li .pop .left div{margin-bottom: 3px;}
@@ -93,18 +93,18 @@ a{border:none;text-decoration: none;color:#000;}
 .banner_y .nav ul li a{display:inline-block;margin-left:10px;color: #fff;}
 .tlinks{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
 /*sub_banner*/
-.sub_banner{width: 1226px;height: 170px;margin-top: 15px;}
+.sub_banner{width: 1226px;height: 250px;margin-top: 15px;}
 .sub_banner .sidebar{width: 234px;height: 170px;}
 .sub_banner .sidebar div{width: 78px;height: 85px;marign:0;padding: 0;}
 .sub_banner .sidebar div a img{opacity:0.8;}
 .sub_banner .sidebar div a img:hover{opacity:1;}
-.sub_banner .datu{width: 316px;height: 170px;margin-left: 14px;}
-.sub_banner .datu a img{width: 316px;height: 170px;opacity:0.8;}
+.sub_banner .datu{width: 398px;height: 230px;margin: 0 5px;}
+.sub_banner .datu a img{width: 398px;height: 230px;opacity:0.8;}
 .sub_banner .datu a img:hover{opacity:1;}
 /*danpin*/
 .biaoti{width: 1226px;height: 58px;line-height: 58px;font-size: 
-22px;font-weight: bold;margin-top: 20px;}
-.danpin .main{width: 1226px;height: 340px;}
+22px;font-weight: bold;margin: 20px auto;}
+.danpin .main{width: 1226px;height: 340px;margin-top: 20px;}
 .danpin .main .mingxing{width: 234px;height: 339px;background: rgb(250,250,250);}
 .danpin .main .mingxing:nth-of-type(1){border-top: 1px solid orange;margin-right:14px;}
 .danpin .main .mingxing:nth-of-type(2){border-top: 1px solid green;margin-right:14px;}
@@ -116,7 +116,7 @@ a{border:none;text-decoration: none;color:#000;}
 .danpin .main .mingxing .sub_mingxing a img:hover{width: 160px;height: 160px;opacity: 1;}
 .danpin .main .mingxing .pinpai{width: 234px;height: 14px;line-height: 14px;text-align: center;margin-top: -10px;}
 .danpin .main .mingxing .pinpai a{font-size: 14px;color:#333;}
-.danpin .main .mingxing .youhui{width: 234px;height: 12px;line-height: 12px;margin:15px 0;font-size: 12px;color: rgb(176,176,176);text-align: center;}
+.danpin .main .mingxing .youhui{width: 134px;height: 12px;line-height: 12px;margin:15px auto;font-size: 12px;color: rgb(176,176,176);text-align: center;}
 .danpin .main .mingxing .jiage{font-size: 14px;text-align: center;color:#ff6709;}
 
 /*peijian*/
