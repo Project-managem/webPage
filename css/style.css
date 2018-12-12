@@ -23,23 +23,23 @@ a{border:none;text-decoration: none;color:#000;}
 
 
 /*header*/
-header{width: 100%;height: 40px;background: #333}
-header .top{width: 80%;height: 40px;line-height: 40px;}
-header .top .left ul li{float: left;font-size: 12px;color: #ccc;}
-header .top .left ul li a{display:block;padding:0 8px;font-size: 12px;font-family: Times New Roman;color: #b0b0b0;}
-header .top .left ul li a:hover{color:#fff;}
-header .top .right ul li{float: left;font-size: 12px;color: #ccc;}
-header .top .right ul li a{display:block;padding:0 8px;font-size: 12px;font-family: Times New Roman;color: #b0b0b0;}
-header .top .right ul li a:hover{color:#fff;}
-header .top .right .gouwuche a{color:#fff;}
-header .top .right .gouwuche{margin:0 20px;background: #424242;width: 120px;text-align: center;font-size: 12px;cursor:pointer;background: #ff6700;color: #fff;}
+/*header{width: 100%;height: 40px;background: #333}*/
+/*header .top{width: 80%;height: 40px;line-height: 40px;}*/
+/*header .top .left ul li{float: left;font-size: 12px;color: #ccc;}*/
+/*header .top .left ul li a{display:block;padding:0 8px;font-size: 12px;font-family: Times New Roman;color: #b0b0b0;}*/
+/*header .top .left ul li a:hover{color:#fff;}*/
+/*header .top .right ul li{float: left;font-size: 12px;color: #ccc;}*/
+/*header .top .right ul li a{display:block;padding:0 8px;font-size: 12px;font-family: Times New Roman;color: #b0b0b0;}*/
+/*header .top .right ul li a:hover{color:#fff;}*/
+/*header .top .right .gouwuche a{color:#fff;}*/
+/*header .top .right .gouwuche{margin:0 20px;background: #424242;width: 120px;text-align: center;font-size: 12px;cursor:pointer;background: #ff6700;color: #fff;}*/
 
-header .top .right .gouwuche:hover{color:#000;background: #666;}
+/*header .top .right .gouwuche:hover{color:#000;background: #666;}*/
 /*banner_x*/
 .banner_x {width: 1226px;height: 100px;}
 .banner_x .logo{background: url('../image/logo_top.png') no-repeat center center;width: 50px;height: 100px;}
 .banner_x .ad_top{width: 180px;height: 100px;background: url('../image/yyymix.gif') no-repeat center center;}
-.banner_x .nav ul li{float: left;height: 100px;line-height: 100px;}
+.banner_x .nav ul li{float: left;height: 100px;line-height: 100px;font-weight: 1000;}
 .banner_x .nav ul li a{display:inline-block;color: #000;font-size: 16px;padding: 0 10px;}
 .banner_x .nav ul li a:hover{color: rgb(255,103,0); }
 .banner_x .search{width: 308px;height: 100px;line-height: 100px;}
@@ -51,12 +51,11 @@ header .top .right .gouwuche:hover{color:#000;background: #666;}
 .banner_x .search .submit:hover{border-color: #ff6700;color:#ff6700;} 
 /*banner_y*/
 .banner_y{width:1226px;height:460px;}
-.banner_y .animation{z-index: -1;width: 800px;}
 .banner_y .nav{width: 234px;height: 460px;background: rgb(12,12,19);display: inline-block;}
 .banner_y .nav ul{padding: 20px 0;position:relative;}
 .banner_y .nav ul li{display: block;width: 174px;height: 40px;line-height:40px;font-size: 14px;padding: 0 30px;}
 .banner_y .nav ul li .pop{width: 800px;height: 460px;background: #fff;position:absolute;left:234px;top:0px;display: none;}
-.banner_y .nav ul li:hover .pop{display: block;box-shadow: 2px 3px 5px #ccc; border-top: 1px solid #ccc;}
+.banner_y .nav ul li:hover .pop{display: block;box-shadow: 2px 3px 5px #ccc; border-top: 1px solid #ccc;z-index: 2;}
 .banner_y .nav ul li .pop .left{width: 265px;height: 460px;background: #fff;}
 .banner_y .nav ul li .pop .left div{margin-bottom: 3px;}
 .banner_y .nav ul li .pop .left .xuangou_left{height: 40px;line-height:40px; font-size: 14px;margin-left: 10px;margin-top: 20px;}

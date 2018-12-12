@@ -1,8 +1,8 @@
 //伸缩动画
-$("#search").click(function(event) {
+$("#search").focus(function(event) {
     /* Act on the event */
     $(this).animate({
-        width: '300px'
+        width: '250px'
     });
 });
 $("#search").blur(function(event) {

@@ -1,53 +1,35 @@
 var pic = document.getElementById("banner");
 var opacity = 1.0;
 var flag = 1;
-var n=1;
+var n=0;
+
+$(".banner-button").children().each(function (index,eq) {
+    $(eq).mouseenter(function () {
+        n=index;
+        switch(n){
+            case 0:pic.setAttribute("src","./image/desklampnew.jpg");break;
+            case 1:pic.setAttribute("src","./image/login_bg.jpg");break;
+            default:pic.setAttribute("src","./image/plugnew.jpg");break;
+        }
+        $(".banner-button").children().css({"background-color":"white","border":"none"});
+        $(".banner-button").children().eq(n).css({"background-color":"red","border":"solid pink 1.5px"});
+    })
+});
 setInterval(function(){
-    switch(flag){
-        case 1:
-            // console.log(opacity);
-            if(opacity>0.8){
-                opacity=opacity-0.005;
-                pic.style.opacity = opacity;
-            }
-            else{
-                opacity=opacity-0.1;
-                pic.style.opacity = opacity;
-            }
-            if(opacity<=0){
-                // opacity=1.0;
-                n=switch_pic(n)
-                flag=2;
-            }
-            break;
-        case 2:
-            // console.log(opacity);
-            if(opacity<0.8){
-                opacity=opacity+0.1;
-                pic.style.opacity = opacity;
-            }
-            else{
-                opacity=opacity+0.05;
-                pic.style.opacity = opacity;
-            }
-            if(opacity>=1){
-                // opacity=1.0;
-                // switch_pic(n+1)
-                flag=1;
-            }
+    $("#banner").fadeIn("3000",function () {
+        // console.log(n);
+        switch(n){
+            case 0:pic.setAttribute("src","./image/desklampnew.jpg");changeButton(n);n++;break;
+            case 1:pic.setAttribute("src","./image/login_bg.jpg");changeButton(n);n++;break;
+            default:pic.setAttribute("src","./image/plugnew.jpg");changeButton(n);n=0;break;
+        }
 
-            break;
-        default:
-            break;
-    }
+    });
 
-},100);
+},3000);
 
-function switch_pic(n){
-    // console.log(n);
-    switch(n){
-        case 1:pic.setAttribute("src","./image/desklampnew.jpg");n++;break;
-        default:pic.setAttribute("src","./image/plugnew.jpg");n=1;break;
-    }
-    return n;
+function changeButton(n) {
+    $(".banner-button").children().css({"background-color":"white","border":"none"});
+    $(".banner-button").children().eq(n).css({"background-color":"red","border":"solid pink 1.5px"});
+
 }
