@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="css/app-responsive.css"/>
 
     <!--add by xie-->
-    <link rel="stylesheet" href="css/add-app-orange.css"/>
+    <link rel="stylesheet" href="css/register.css"/>
     <title>Create_account</title>
 </head>
 <body class="page page-id-6 home-style1">
@@ -167,7 +167,7 @@
                                     <div class="top-minicart-icon pull-right">
                                         <i class="fa fa-shopping-cart"></i>
                                         <!--<a class="cart-contents" href="cart.html" title="View your shopping cart">-->
-                                            <!--<span class="minicart-number">2</span>-->
+                                        <!--<span class="minicart-number">2</span>-->
                                         <!--</a>-->
                                     </div>
 
@@ -521,11 +521,13 @@
             <div class="block-content">
                 <div class="col-reg registered-account">
                     <div class="email-input">
-                        <input type="text" class="form-control input-text username" name="username" id="username" placeholder="Username" />
+                        <input type="text" class="form-control input-text username" name="username" id="username"
+                               placeholder="Username"/>
                     </div>
 
                     <div class="pass-input">
-                        <input class="form-control input-text password" type="password" placeholder="Password" name="password" id="password" />
+                        <input class="form-control input-text password" type="password" placeholder="Password"
+                               name="password" id="password"/>
                     </div>
 
                     <div class="ft-link-p">
@@ -534,7 +536,7 @@
 
                     <div class="actions">
                         <div class="submit-login">
-                            <input type="submit" class="button btn-submit-login" name="login" value="Login" />
+                            <input type="submit" class="button btn-submit-login" name="login" value="Login"/>
                         </div>
                     </div>
                 </div>
@@ -561,12 +563,13 @@
 </div>
 
 <main class="create-account">
-        <form action="" method="post" class="register" >
-            <div class="col-md-4 col-md-offset-4 bg">
-                <h1 class="">Create Your ParknShop Account</h1>
+    <form action="" method="post" class="register" id="register">
+        <div class="col-md-4 col-md-offset-4 bg">
+            <h1 class="">Create Your ParknShop Account</h1>
+            <div class="page1">
                 <div class="row">
                     <input class="col-md-5" type="text" name="first_name" placeholder="first name">
-                    <input class="col-md-5 col-md-offset-1"  type="text" name="last_name" placeholder="last name">
+                    <input class="col-md-5 col-md-offset-1" type="text" name="last_name" placeholder="last name">
                 </div>
                 <div class="row">
                     <select class="col-md-2" name="region">
@@ -583,21 +586,41 @@
                     <input class="col-md-11" type="email" name="email" placeholder="Email">
                 </div>
                 <div>
-                    <a class="col-md-4 login"  href="javascript:void(0);" data-toggle="modal" data-target="#login_form">
+                    <a class="col-md-4 login" href="javascript:void(0);" data-toggle="modal" data-target="#login_form">
                         Sign in instead
                     </a>
-                    <input class="col-md-2 col-md-offset-5 submit" type="submit" name="submit" value="Next">
+                    <button id="nextPage" class="col-md-2 col-md-offset-5" value="Next">Next</button>
+
                 </div>
             </div>
-        </form>
 
-    <div class="modal fade" id="register-info" tabindex="-1" role="dialog" aria-hidden="true" >
-
-    </div>
+            <div class="page2">
+                <div class="row">
+                    <input class="col-md-11" type="text" name="username" placeholder="username" minlength="6" required="required">
+                </div>
+                <div class="row">
+                    <input class="col-md-11" type="password" name="password"placeholder="password" minlength="6" required="required">
+                    <input class="col-md-11" type="password" name="repassword" placeholder="re-password" minlength="6" required="required">
+                </div>
+                <div class="row">
+                    <input class="col-md-6" type="text" placeholder="verification code" required="required">
+                    <button class="col-md-2 col-md-offset-3 verification" value="send">Send</button>
+                </div>
+                <div>
+                   <button id="lastPage" class="col-md-2" value="Back">Back</button>
+                    <input class="col-md-2 col-md-offset-7 submit" type="submit" name="submit" value="Submit">
+                </div>
+            </div>
+        </div>
+    </form>
 </main>
 <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery/jquery-migrate.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery/js.cookie.min.js"></script>
+
+<script type="text/javascript" src="js/jquery/jquery.validate.min.js"></script>
+<script type="text/javascript" src="js/form.js"></script>
+
 </body>
 </html>
