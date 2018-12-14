@@ -1,0 +1,65 @@
+/*logo set*/
+.logo-self{
+    width: 350px;
+}
+
+/*create account form set*/
+
+.center{
+    margin: 0 auto;
+}
+
+.create-account .bg{
+    border: solid #d9d7d8 1px;
+    border-radius: 10px;
+    padding-top: 3rem;
+    padding-bottom:3rem;
+    padding-left: 4rem;
+}
+.create-account .register{
+    padding: 1rem;
+    margin-top: 5rem;
+}
+.create-account .register h1{
+    font-size: 20px;
+    margin-left: -3.2%;
+    margin-bottom: 2rem;
+}
+.create-account .register input{
+    border: solid 1px #d9d7d8;
+    height: 3rem;
+}
+.create-account .register select{
+    height: 3rem;
+    border: solid #d9d7d8 1px;
+    border-radius: 10px;
+}
+
+.create-account .register input::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #999;
+    font-size: larger;
+}
+.create-account .register input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #999;
+    font-size: larger;
+}
+.create-account .register input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #999;
+    font-size: larger;
+}
+.create-account .register input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #999;
+    font-size: larger;
+}
+.create-account .register .login{
+    padding-top: 1rem;
+    color:#ffaa00;
+    font-weight: bold;
+}
+.create-account .register .submit{
+    background-color: #ffaa00;
+    color: white;
+}
+
+
+
