@@ -2,13 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="css/register.css"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>请求本地json文件数据</title>
+    <!--<script src="../js/jquery-1.7.2.min.js"></script>-->
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
-<style>
-
-</style>
+<script>   
+    window.location.href="./index.html";   
+</script>  
 <body>
-    <strong>aaaa</strong>
+
+<!-- <script type="text/javascript">
+    $(function () {
+
+     /*
+    * Mock.mock( rurl, template )
+    * rurl:表示需要拦截的 URL，可以是 URL 字符串或 URL 正则。
+    * template：表示数据模板，可以是对象或字符串
+    * */
+
+//         mock拦截ajax请求并返回数据
+        Mock.mock(/\.json/, {
+            'code':'000',
+            'message':'message信息',
+            'list|1-10': [{
+                'id|+1': 1,
+                'email': '@EMAIL',
+                'name': '@name'
+            }]
+        })
+
+
+        $.ajax({
+            url:'list.json',
+            contentType: 'application/json',
+            type: 'POST',
+            timeout: 5000,
+            dataType:'JSON',
+            data: JSON.stringify({schoolId: 123}),
+            success: function (res) {
+                if(res.code == 000){
+                    console.log(res);
+                    $('<pre>').text(JSON.stringify(res, null, 4)).appendTo('body');
+                }else{
+                    alert(res.message);
+                }
+            },
+            Error: function (xhr, type, errorThrown) {
+                console.log(JSON.stringify(xhr));
+                console.log(type);
+                console.log(errorThrown);
+            }
+        });
+    })
+</script> -->
+<script type="text/javascript" src="http://mockjs.com/dist/mock.js"></script>
 </body>
 </html>

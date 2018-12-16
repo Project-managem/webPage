@@ -61,6 +61,8 @@
 
 .create-account .register .login {
     padding-top: 1rem;
+}
+.create-account .register .login a{
     color: #ffaa00;
     font-weight: bold;
 }
@@ -69,10 +71,6 @@
     background-color: #ffaa00;
     border-radius: 5px;
     color: white;
-}
-
-.create-account .register .page2 {
-    display: none;
 }
 
 .create-account .register button {
