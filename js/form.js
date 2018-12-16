@@ -11,14 +11,17 @@ $("#submit_register").click(function(event) {
     var re_passwd = $("#re_password").val();
     var username = $("#cusername").val();
     var verification = $("#verification").val();
+    var verification_back ;
 
+    // 验证密码输入是否一致
     if($.trim(password) != $.trim(re_passwd)){
-        console.log("123");
+        // console.log("123");
         $(function(){
             $("#password").popover('show');
         });
         return false;
     }
+    //验证电话输入是否规范
     var reg = /^\d+$/;
     if(reg.test(telephone) == false){
       $(function(){
@@ -26,6 +29,8 @@ $("#submit_register").click(function(event) {
     });
       return false;
   }
+
+
 
   var obj ={
     "customer_username":username,
@@ -35,28 +40,36 @@ $("#submit_register").click(function(event) {
     "customer_address":address,
     "customer_name":firstname+lastname,
 };
+
 var json = JSON.stringify(obj);
 
 console.log(json);
 
-  // /////// 测试用
+  /////// 测试用
   // Mock.mock(/\.json/, {
-  //     "code":"1"
+  //     "code":"1",
+  //     "message":"the verification code is wrong"
   // })
-  //   /////////
+    /////////
 
     $.ajax({
-        url: 'test.json',  ///改url为后端相关文件
+        url: 'test.json',  ///改url为后端相关文件，需要返回是否注册成功{"code":1,"message":"xxxx"},code为1表示成功，否在失败，message为失败原因
         type: 'POST',
         dataType: 'JSON',
         data: json,
         timeout: 5000,
+        async:false,
     })
     .done(function(data) {
         console.log("success");
-        alert("success register");
-        window.location.href="./index.html";   
-    })
+        if(data.code == 1){
+            window.location.href="index.html";   
+            alert("success register");
+        }
+        else{
+         alert("fail register \n"+data.message);
+     }
+ })
     .fail(function() {
         console.log("error");
     })
@@ -65,6 +78,63 @@ console.log(json);
     });
     return false;
 });
+
+
+/*发送验证码*/
+$("#send_verification").click(function(event) {
+    /* Act on the event */
+
+    var email = $("#email").val();
+    var telephone = $("#telephone").val();
+
+    if(email ==""){
+      $(function(){
+        $("#email").popover('show');
+    });
+      return;
+  }
+  if(telephone ==""){
+    $(function(){
+        $("#telephone").popover('show');
+    });
+    return;
+}
+
+var data = {"customer_telephone":telephone,"customer_email":email};
+var json = JSON.stringify(data);
+
+    // 发送验证码请求
+
+    // 测试用
+
+  //   Mock.mock(/\.json/, {
+  //     "code":"123"
+  // })
+
+  $.ajax({
+        url: 'test.json',   ///改url为后端相关文件
+        type: 'POST',
+        dataType: 'JSON',
+        data: json,
+        timeout: 5000,
+    })
+  .done(function(data) {
+   console.log("success");
+       // console.log(data.code);
+       // verification_back = data.code;
+       $("#send_verification").attr("disabled","true");
+       $("#send_verification").css("background-color","gray");
+   })
+  .fail(function() {
+    console.log("error");
+})
+  .always(function() {
+    console.log("complete");
+});
+});
+
+
+
 
 /*用户输入提示*/
 $("#telephone").focus(function(event){
@@ -88,45 +158,18 @@ $("#re_password").focus(function(event) {
     });
 });
 
-
-/*发送验证码*/
-$("#send_verification").click(function(event) {
+$("#email").focus(function(event) {
     /* Act on the event */
-    console.log(1333);
-    // var telephone = $("#customer_telephone").val();
-    // var email = $("#customer_email").val();
-
-    var telephone = "123";
-    var email = "123@123.com";
-    var data = {"customer_telephone":telephone,"customer_email":email};
-    var json = JSON.stringify(data);
-
-    console.log(json);
-    // 发送验证码请求
-
-    /////// 测试用
-  //   Mock.mock(/\.json/, {
-  //     "code":"123"
-  // })
-    /////////
-
-    $.ajax({
-        url: 'test.json',   ///改url为后端相关文件
-        type: 'POST',
-        dataType: 'JSON',
-        data: json,
-        timeout: 5000,
-    })
-    .done(function(data) {
-       console.log("success");
-       console.log(data.code);
-       $("#send_verification").attr("disabled","true");
-       $("#send_verification").css("background-color","gray");
-   })
-    .fail(function() {
-        console.log("error");
-    })
-    .always(function() {
-        console.log("complete");
+    $(function(){
+        $("#email").popover('hide');
     });
 });
+
+$("#verification").focus(function(event) {
+    /* Act on the event */
+    $(function(){
+        $("#verification").popover('hide');
+    });
+});
+
+//发送验证码

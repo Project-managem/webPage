@@ -31,6 +31,11 @@
     <!--add by xie-->
     <link rel="stylesheet" href="css/register.css"/>
     <title>Create_account</title>
+
+    <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-migrate.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery/js.cookie.min.js"></script>
 </head>
 <body class="page page-id-6 home-style1">
     <div class="body-wrapper theme-clearfix">
@@ -573,7 +578,7 @@
                 <input class="col-md-11" type="text" id="address" name="address" placeholder="address" required="required">
             </div>
             <div class="row">
-                <input class="col-md-11" type="email" id="email" name="email" placeholder="Email" required="required">
+                <input class="col-md-11" type="email" id="email" name="email" placeholder="Email" required="required" data-toggle="popover" data-placement="bottom" data-trigger="manual" title="required">
             </div>
             <div class="row">
                 <input class="col-md-11" type="text" id="cusername" name="cusername" placeholder="username" minlength="6" required="required">
@@ -588,10 +593,10 @@
                     <option value="+1">+1</option>
                     <option value="+44">+44</option>
                 </select>
-                <input class="col-md-offset-1 col-md-8" type="text" id="telephone" name="telephone" placeholder="telephone number" required="required" data-toggle="popover" data-placement="bottom" data-trigger="manual" title="please input right telephone-format">
+                <input class="col-md-offset-1 col-md-8" type="text" id="telephone" name="telephone" placeholder="telephone number" required="required" data-toggle="popover" data-placement="bottom" data-trigger="manual" title="please input right telephone number">
             </div>
             <div class="row">
-                <input class="col-md-6" type="text"  id="verification" name="verification" placeholder="verification code" required="required">
+                <input class="col-md-6" type="text"  id="verification" name="verification" placeholder="verification code" required="required" data-toggle="popover" data-placement="bottom" data-trigger="manual" title="code is Verification code error">
                 <button type="button" class="col-md-2 col-md-offset-3" id="send_verification">Send</button>
             </div>
             <div class="row">
@@ -605,10 +610,7 @@
         </div>
     </form>
 </main>
-<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery/jquery-migrate.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/jquery/js.cookie.min.js"></script>
+
 
 <script type="text/javascript" src="http://mockjs.com/dist/mock.js"></script>
 
