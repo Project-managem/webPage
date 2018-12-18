@@ -1,0 +1,32 @@
+.resultRow
+{
+
+}
+
+.itemBlock
+{
+    float:left;
+    max-width:272px;
+    width:272px;
+    height:363px;
+    background:white;
+    border:2px solid #fff;
+    transition:box-shadow 0.5s ease;
+    box-shadow: 0px 0px 30px #fff;
+    margin-bottom:23px;
+    margin-right:10px;
+    margin-left:10px;
+    text-align:left;
+}
+
+.itemContentBlock
+{
+    height:91px;
+}
+
+.imgBlock
+{
+    width:268px;
+    height:268px;
+    text-align:center;
+}
