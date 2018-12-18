@@ -11,8 +11,9 @@ $(".submit-login input").click(function(event) {
 	}
 	var json = JSON.stringify(obj);
 
-	Mock.mock(/\.json/, {
-		"code":"123"
+    //测试用
+    Mock.mock(/\.json/, {
+        "id": "id_0001"
 	})
 
 	$.ajax({
@@ -20,7 +21,8 @@ $(".submit-login input").click(function(event) {
 		type: 'POST',
 		dataType: 'JSON',
 		timeout:5000,
-		data: json
+		data: json,
+		async:false
 	})
 	.done(function(data) {
 		console.log("success");
