@@ -38,7 +38,6 @@ $(".submit-login input").click(function(event) {
 
 //检测状态
 function checkUserState(el,attr){
-	document.cookie = "username=123";
 	var cookie = document.cookie;
 	console.log(cookie =="");
 	if(cookie ==""){
