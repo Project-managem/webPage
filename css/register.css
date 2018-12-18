@@ -9,17 +9,12 @@
     margin: 0 auto;
 }
 
-.create-account .bg {
+.create-account .register {
+    margin-bottom: 10rem;
+    margin-top: 10rem;
+    padding: 4rem 2rem 4rem 6rem;
     border: solid #d9d7d8 1px;
     border-radius: 10px;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    padding-left: 4rem;
-}
-
-.create-account .register {
-    padding: 1rem;
-    margin-top: 5rem;
 }
 
 .create-account .register h1 {

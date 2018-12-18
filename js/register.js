@@ -46,10 +46,10 @@ var json = JSON.stringify(obj);
 console.log(json);
 
   /////// 测试用
-  // Mock.mock(/\.json/, {
-  //     "code":"1",
-  //     "message":"the verification code is wrong"
-  // })
+  Mock.mock(/\.json/, {
+      "code":"1",
+      "message":"the verification code is wrong"
+  })
     /////////
 
     $.ajax({
@@ -67,9 +67,9 @@ console.log(json);
             alert("success register");
         }
         else{
-         alert("fail register \n"+data.message);
-     }
- })
+           alert("fail register \n"+data.message);
+       }
+   })
     .fail(function() {
         console.log("error");
     })
@@ -84,6 +84,7 @@ console.log(json);
 $("#send_verification").click(function(event) {
     /* Act on the event */
 
+    console.log(123);
     var email = $("#email").val();
     var telephone = $("#telephone").val();
 
@@ -107,9 +108,9 @@ var json = JSON.stringify(data);
 
     // 测试用
 
-  //   Mock.mock(/\.json/, {
-  //     "code":"123"
-  // })
+    Mock.mock(/\.json/, {
+      "code":"123"
+  })
 
   $.ajax({
         url: 'test.json',   ///改url为后端相关文件
@@ -119,7 +120,7 @@ var json = JSON.stringify(data);
         timeout: 5000,
     })
   .done(function(data) {
-   console.log("success");
+     console.log("success");
        // console.log(data.code);
        // verification_back = data.code;
        $("#send_verification").attr("disabled","true");
