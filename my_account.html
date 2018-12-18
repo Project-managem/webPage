@@ -30,6 +30,7 @@
 
 	<!--add by xie-->
 	<link rel="stylesheet" href="css/register.css" />
+	<link rel="stylesheet" href="css/my-account-order.css">
 </head>
 
 <body class="page woocommerce-account woocommerce-page">
@@ -535,7 +536,7 @@
 												</li>
 												
 												<li >
-												   <a href="http://demo.smartaddons.com/templates/html/etrostore/order.html">Orders</a>
+												   <a href="javascript:void(0)" id="my_account_orders">Orders</a>
 												</li>
 												
 												<li>
@@ -547,21 +548,25 @@
 												</li>
 												
 												<li>
-													<a href="create_account.html">Logout</a>
+													<a href="create_account.html" id="login_out">Logout</a>
 												</li>
 											</ul>
 										</nav>
 									  
 										<div class="woocommerce-MyAccount-content">
-											<p>
-												Hello <strong>Tester</strong> (not Tester? <a href="create_account.html">Sign out</a>)
-											</p>
-											<p>
-												From your account dashboard you can view your 
-												<a href="http://demo.smartaddons.com/templates/html/etrostore/order.html">recent orders</a>, 
-												manage your <a href="http://demo.smartaddons.com/templates/html/etrostore/addresses.html">shipping and billing addresses</a> 
-												and <a href="http://demo.smartaddons.com/templates/html/etrostore/account_details.html">edit your password and account details</a>.
-											</p>
+											<!--<p>-->
+												<!--Hello <strong>Tester</strong> (not Tester? <a href="create_account.html">Sign out</a>)-->
+											<!--</p>-->
+											<!--<p>-->
+												<!--From your account dashboard you can view your -->
+												<!--<a href="http://demo.smartaddons.com/templates/html/etrostore/order.html">recent orders</a>, -->
+												<!--manage your <a href="http://demo.smartaddons.com/templates/html/etrostore/addresses.html">shipping and billing addresses</a> -->
+												<!--and <a href="http://demo.smartaddons.com/templates/html/etrostore/account_details.html">edit your password and account details</a>.-->
+											<!--</p>-->
+											<ul>
+												<li><img src="#" alt="good_1"></li>
+												<li><img src="#" alt="good_2"></li>
+											</ul>
 										</div>
 									</div>
 								</div>
@@ -1139,6 +1144,9 @@
 	<script type="text/javascript" src="js/plugins.js"></script>
 	<script type="text/javascript" src="js/megamenu.min.js"></script>
 	<script type="text/javascript" src="js/main.min.js"></script>
+
+	<script type="text/javascript" src="js/mock.js"></script>
+	<script type="text/javascript" src="js/my_account.js"></script>
    
 	<script type="text/javascript">
 		var sticky_navigation_offset_top = $("#header .header-bottom").offset().top;

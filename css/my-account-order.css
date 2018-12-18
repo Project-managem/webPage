@@ -1,0 +1,8 @@
+.woocommerce-MyAccount-content ul{
+    list-style: none;
+}
+.woocommerce-MyAccount-content ul li{
+    display: block;
+}
+
+
