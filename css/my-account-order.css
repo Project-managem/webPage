@@ -1,8 +1,34 @@
-.woocommerce-MyAccount-content ul{
-    list-style: none;
+.woocommerce-MyAccount-content .account-order td{
+    border:1px solid #ccc ;
+    width: 100px;
+    text-align: center;
 }
-.woocommerce-MyAccount-content ul li{
-    display: block;
+.woocommerce-MyAccount-content .account-order .ruler-order >td{
+    border:none;
 }
+.woocommerce-MyAccount-content .account-order .header-orders{
+    border:1px solid #ccc ;
+}
+.woocommerce-MyAccount-content .account-order .header-orders >td{
+    border:none;
+}
+.woocommerce-MyAccount-content .account-order .header-orders .date-orders{;
+}
+.woocommerce-MyAccount-content .account-order .content-orders{
 
-
+}
+.woocommerce-MyAccount-content .account-order .content-orders .img-orders{
+}
+.woocommerce-MyAccount-content .account-order .content-orders .title-orders{
+    text-align: left;
+    padding-left: 10px;
+}
+.woocommerce-MyAccount-content .account-order .content-orders .number-orders{
+}
+.woocommerce-MyAccount-content .account-order .content-orders .total-money-orders{
+}
+.woocommerce-MyAccount-content .account-order .content-orders .view-orders{
+}
+.woocommerce-MyAccount-content .account-order .content-orders .evalution-orders{
+}
+.woocommerce-MyAccount-content .account-order .content-orders

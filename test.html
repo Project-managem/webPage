@@ -7,9 +7,14 @@
     <!--<script src="../js/jquery-1.7.2.min.js"></script>-->
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
-<script src="js/test.js"></script>  
-<body>
 
+<body>
+<script type="module">
+    import {foo, num} from './js/test.js';
+
+    console.log(num);
+    console.log(foo());
+</script>
 <!-- <script type="text/javascript">
     $(function () {
 
