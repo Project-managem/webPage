@@ -1053,7 +1053,7 @@ select:-webkit-autofill {
   border-color: #ffaa00;
   background-color: #ffaa00;
 }
-.top-form.top-form-minicart .top-minicart-icon a {
+/* .top-form.top-form-minicart .top-minicart-icon a {
   font-family: PoppinsRegular;
   font-size: 13px;
   color: #fff;
@@ -1071,7 +1071,7 @@ select:-webkit-autofill {
 .rtl .top-form.top-form-minicart .top-minicart-icon a {
   right: auto;
   left: -5px;
-}
+} */
 .top-form .wrapp-minicart {
   opacity: 0;
   -webkit-transition: all 0.3s ease-out;

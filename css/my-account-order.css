@@ -14,6 +14,9 @@
 }
 .woocommerce-MyAccount-content .account-order .header-orders .date-orders{;
 }
+.woocommerce-MyAccount-content .account-order .header-orders .view-orders{
+}
+
 .woocommerce-MyAccount-content .account-order .content-orders{
 
 }
@@ -26,8 +29,6 @@
 .woocommerce-MyAccount-content .account-order .content-orders .number-orders{
 }
 .woocommerce-MyAccount-content .account-order .content-orders .total-money-orders{
-}
-.woocommerce-MyAccount-content .account-order .content-orders .view-orders{
 }
 .woocommerce-MyAccount-content .account-order .content-orders .evalution-orders{
 }
