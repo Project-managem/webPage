@@ -1,35 +1,100 @@
-.woocommerce-MyAccount-content .account-order td{
-    border:1px solid #ccc ;
+.show-state {
+    display: block;
+}
+
+.hidden-state {
+    display: none;
+}
+
+.woocommerce-MyAccount-content .account-order td {
+    border: 1px solid #ccc;
     width: 100px;
     text-align: center;
 }
-.woocommerce-MyAccount-content .account-order .ruler-order >td{
-    border:none;
-}
-.woocommerce-MyAccount-content .account-order .header-orders{
-    border:1px solid #ccc ;
-}
-.woocommerce-MyAccount-content .account-order .header-orders >td{
-    border:none;
-}
-.woocommerce-MyAccount-content .account-order .header-orders .date-orders{;
-}
-.woocommerce-MyAccount-content .account-order .header-orders .view-orders{
+
+.woocommerce-MyAccount-content .account-order .ruler-order > td {
+    border: none;
 }
 
-.woocommerce-MyAccount-content .account-order .content-orders{
+.woocommerce-MyAccount-content .account-order .header-orders {
+    border: 1px solid #ccc;
+}
+
+.woocommerce-MyAccount-content .account-order .header-orders > td {
+    border: none;
+}
+
+.woocommerce-MyAccount-content .account-order .header-orders .date-orders {;
+}
+
+.woocommerce-MyAccount-content .account-order .header-orders .view-orders {
+}
+
+.woocommerce-MyAccount-content .account-order .content-orders {
 
 }
-.woocommerce-MyAccount-content .account-order .content-orders .img-orders{
+
+.woocommerce-MyAccount-content .account-order .content-orders .img-orders {
 }
-.woocommerce-MyAccount-content .account-order .content-orders .title-orders{
+
+.woocommerce-MyAccount-content .account-order .content-orders .title-orders {
     text-align: left;
     padding-left: 10px;
 }
-.woocommerce-MyAccount-content .account-order .content-orders .number-orders{
+
+.woocommerce-MyAccount-content .account-order .content-orders .number-orders {
 }
-.woocommerce-MyAccount-content .account-order .content-orders .total-money-orders{
+
+.woocommerce-MyAccount-content .account-order .content-orders .total-money-orders {
 }
-.woocommerce-MyAccount-content .account-order .content-orders .evalution-orders{
+
+.woocommerce-MyAccount-content .account-order .content-orders .evalution-orders {
 }
-.woocommerce-MyAccount-content .account-order .content-orders
+
+.woocommerce-MyAccount-content .account-order .content-orders {
+}
+
+.woocommerce-MyAccount-content #account_addresses{
+    width: 100%;
+    /*border: solid;*/
+}
+
+.woocommerce-MyAccount-content #account_addresses .address-item-style {
+    display: inline-block;
+    position: relative;
+    margin: 3rem;
+    background-color: #ebebe4;
+    width: 250px;
+    padding: 10px;
+    box-shadow: -1rem 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+    border-radius: 0.25rem !important
+}
+.woocommerce-MyAccount-content #account_addresses .address-item-style .address_name {
+    width: 180px;
+    height: 30px;
+    border: none;
+    font-size: 20px;
+}
+
+.woocommerce-MyAccount-content #account_addresses .address-item-style .address_addr {
+    border: none;
+    height: 8rem;
+    width: 160px;
+    padding: 0.5rem;
+    resize: none;
+}
+.woocommerce-MyAccount-content #account_addresses .address-item-style .address_tel {
+    border: none;
+    width: 180px;
+    border: none;
+}
+.woocommerce-MyAccount-content #account_addresses .address-item-style .reset_address {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+.woocommerce-MyAccount-content #account_addresses .address-item-style .delete_address {
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+}
