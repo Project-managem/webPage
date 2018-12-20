@@ -64,24 +64,25 @@ $("#my_account_orders").click(function () {
 })
 });
 
-function createTable(data,n) {
+//创建用户订单表
+function createTable(data) {
     var table = document.getElementsByClassName("account-order")[0];
-    for(let i=0;i<n;i++){
+    for(let i=0;i<data.order.length;i++){
         var header = document.createElement("tr");
         header.setAttribute("class","header-orders");
 
         var date = document.createElement("td");
-        date.appendChild(document.createTextNode(data[i].date));
+        date.appendChild(document.createTextNode(data.order[i].date));
         date.setAttribute("colspan","3");
         date.setAttribute("class","date-orders");
 
         var id = document.createElement("td");
-        date.appendChild(document.createTextNode(data[i].id));
+        date.appendChild(document.createTextNode(data.order[i].id));
         date.setAttribute("colspan","3");
         date.setAttribute("class","id-orders");
 
         var pay_method = document.createElement("td");
-        date.appendChild(document.createTextNode(data[i].method));
+        date.appendChild(document.createTextNode(data.order[i].method));
         date.setAttribute("colspan","4");
         date.setAttribute("class","payway-orders");
 
@@ -96,18 +97,23 @@ function createTable(data,n) {
             content.setAttribute("class","content-orders")
 
             var img = document.createElement("td");
-            img.setAttribute("href",data[i].goods[j].image);
+            img.setAttribute("href",data.order[i].goods[j].image);
             img.setAttribute("class","img-orders");
+
             var title = document.createElement("td");
-            title.setAttribute("href",data[i].goods[j].title);
             title.setAttribute("class","title-orders");
+            title.setAttribute("colspan","5");
+            title.appendChild(document.createTextNode(data.order[i].goods[j].title));
+
             var number = document.createElement("td");
-            number.setAttribute("href",data[i].goods[j].num);
             number.setAttribute("class","number-orders");
+            number.appendChild(document.createTextNode(data.order[i].goods[j].num));
+
             var evalution = document.createElement("td");
             evalution.setAttribute("class","evalution-orders");
             var evalution_a = document.createElement("a");
             evalution_a.appendChild(document.createTextNode("evalution"));
+            evalution_a.setAttribute("href","./evalution_info.html");
             evalution.appendChild(evalution_a); 
 
             content.appendChild(img);
@@ -117,11 +123,13 @@ function createTable(data,n) {
 
             if(j===0){
                var total = document.createElement("td");
-               total.setAttribute("href",data[i].goods[j].total);
+               total.setAttribute("href",data.order[i].total);
                total.setAttribute("class","total-money-orders");
+               total.setAttribute("rowspan",data.order[i].goods.length);
 
                var view = document.createElement("td");
                view.setAttribute("class","view-orders");
+               view.setAttribute("rowspan",data.order[i].goods.length);
                var view_a = document.createElement("a");
                view_a.appendChild(document.createTextNode("view"));
                view.appendChild(view_a);
@@ -131,9 +139,7 @@ function createTable(data,n) {
            }
 
            table.appendChild(content);
-       }
-
-
+       }//for j
 
     }//for n
 }
