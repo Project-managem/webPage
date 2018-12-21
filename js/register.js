@@ -61,6 +61,7 @@ $("#submit_register").click(function (event) {
     })
         .done(function (data) {
             console.log("success");
+            data=JSON.parse(data);
             if (data.code == 1) {
                 window.location.href = "index.html";
                 alert("success register");
@@ -118,6 +119,7 @@ $("#send_verification").click(function (event) {
     })
         .done(function (data) {
             console.log("success");
+            data=JSON.parse(data);
             // console.log(data.code);
             // verification_back = data.code;
             $("#send_verification").attr("disabled", "true");

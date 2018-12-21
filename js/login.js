@@ -12,9 +12,9 @@ $(".submit-login input").click(function(event) {
 	var json = JSON.stringify(obj);
 
     //测试用
-    Mock.mock(/\.json/, {
+    Mock.mock(/\.json/, JSON.stringify({
         "id": "id_0001"
-	})
+	}))
 
 	$.ajax({
 		url: 'test.json',
@@ -26,6 +26,7 @@ $(".submit-login input").click(function(event) {
 	})
 	.done(function(data) {
 		console.log("success");
+		data=JSON.parse(data);
 		setCookie("id",data.id,1);
 	})
 	.fail(function() {
@@ -41,7 +42,7 @@ $(".submit-login input").click(function(event) {
 //检测状态
 function checkUserState(el,attr){
 	var cookie = document.cookie;
-	console.log(cookie =="");
+	// console.log(cookie =="");
 	if(cookie ==""){
 		console.log($(el).attr("href"));
 		var attr = $(el).attr("href");

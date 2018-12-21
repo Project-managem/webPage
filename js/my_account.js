@@ -16,42 +16,42 @@ $("#my_account_orders").click(function () {
     $("#account_orders").attr("class", "show-state");
     $("#account_orders").siblings().attr("class", "hidden-state");
 
-    Mock.mock(/\.json/, {
-        "orders": [
-            {
-                "id": "n0001",
-                "date": "2018-10-3",
-                "method": "Alipay",
-                "goods": [
-                    {
-                        "image": "./images/1903/43.jpg",
-                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
-                        "num": "3",
-                    },
-                    {
-                        "image": "./images/1903/43.jpg",
-                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
-                        "num": "4"
-                    },
-                ],
-                "total": "100"
-            },
-            {
-                "id": "n0002",
-                "date": "2018-10-3",
-                "method": "Alipay",
-                "goods": [
-                    {
-                        "image": "./images/1903/43.jpg",
-                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
-                        "num": "2"
-                    }
-                ],
-                "total": "30"
-            }
-        ]
-
-    });
+    // Mock.mock(/\.json/, {
+    //     "orders": [
+    //         {
+    //             "id": "n0001",
+    //             "date": "2018-10-3",
+    //             "method": "Alipay",
+    //             "goods": [
+    //                 {
+    //                     "image": "./images/1903/43.jpg",
+    //                     "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+    //                     "num": "3",
+    //                 },
+    //                 {
+    //                     "image": "./images/1903/43.jpg",
+    //                     "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+    //                     "num": "4"
+    //                 },
+    //             ],
+    //             "total": "100"
+    //         },
+    //         {
+    //             "id": "n0002",
+    //             "date": "2018-10-3",
+    //             "method": "Alipay",
+    //             "goods": [
+    //                 {
+    //                     "image": "./images/1903/43.jpg",
+    //                     "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+    //                     "num": "2"
+    //                 }
+    //             ],
+    //             "total": "30"
+    //         }
+    //     ]
+    //
+    // });
 
     $.ajax({
         url: "test.json",
@@ -62,7 +62,7 @@ $("#my_account_orders").click(function () {
     })
         .done(function (data) {
             console.log("success");
-            console.log(data);
+            data=JSON.parse(data);
             createTable(data);
 
         })
@@ -224,21 +224,21 @@ $("#my_account_addresses").click(function () {
         addItem("", "", "");
     });
 
-    Mock.mock(/\.json/, {
-        "obj":
-            [{
-                "id": 1,
-                "username": "zhang san",
-                "address": "xxxxxxx",
-                "tel": "123123123"
-            },
-                {
-                    "id": 2,
-                    "username": "wang wu",
-                    "address": "xxxxxxx",
-                    "tel": "123123123"
-                }]
-    });
+    // Mock.mock(/\.json/, {
+    //     "obj":
+    //         [{
+    //             "id": 1,
+    //             "username": "zhang san",
+    //             "address": "xxxxxxx",
+    //             "tel": "123123123"
+    //         },
+    //             {
+    //                 "id": 2,
+    //                 "username": "wang wu",
+    //                 "address": "xxxxxxx",
+    //                 "tel": "123123123"
+    //             }]
+    // });
 
     $.ajax({
         url: "test.json",
@@ -250,7 +250,7 @@ $("#my_account_addresses").click(function () {
     })
         .done(function (data) {
             console.log("success");
-            console.log(data);
+            data=JSON.parse(data);
             for (let i = 0; i < data.obj.length; i++) {
                 addItem(data.obj[i].username, data.obj[i].address, data.obj[i].tel, "disabled");
 
@@ -287,6 +287,7 @@ function deleteAddressForm(index, el) {
     })
         .done(function (data) {
             console.log("success");
+            data=JSON.parse(data);
             $(el).parent("div").remove();
         })
         .fail(function () {
@@ -310,7 +311,7 @@ function deleteAddressForm(index, el) {
 // 消息可以为空
 function resetAddressForm(index, el) {
     // console.log(index);
-    Mock.mock(/\.json/, {});
+    // Mock.mock(/\.json/, {});
 
     if ($(el).siblings("input").attr("disabled") == "disabled") {
         $(el).siblings("input").attr("disabled", false);
@@ -335,7 +336,7 @@ function resetAddressForm(index, el) {
         })
             .done(function (data) {
                 console.log("success");
-                console.log(data)
+                data=JSON.parse(data);
                 $(el).siblings("input").attr("disabled", "disabled");
                 $(el).siblings("textarea").attr("disabled", "disabled");
             })
@@ -365,12 +366,12 @@ $("#my_account_detail").click(function () {
 
     var id = getCookie("id");
     //例示数据
-    Mock.mock(/\.json/, {
-        "firstname": "san",
-        "lastname": "zhang",
-        "email": "123@123.com",
-        "telephone": "123"
-    });
+    // Mock.mock(/\.json/,JSON.stringify( {
+    //     "firstname": "san",
+    //     "lastname": "zhang",
+    //     "email": "123@123.com",
+    //     "telephone": "123"
+    // }));
 
     //更新表单
     $.ajax({
@@ -383,6 +384,7 @@ $("#my_account_detail").click(function () {
         .done(function (data) {
             console.log("success");
             // console.log(data)
+            data=JSON.parse(data);
             $("#inputFirstName").val(data.firstname);
             $("#inputLastName").val(data.lastname);
             $("#inputEmail").val(data.email);
@@ -425,7 +427,7 @@ $("#inputSubmitPasswordChange").click(function () {
     var cus_form = $("#account_detail").children("form").serialize();
 
     //例示数据
-    Mock.mock(/\.txt/, {});
+    // Mock.mock(/\.txt/, {});
 
     $.ajax({
         url: "test.json",
@@ -436,6 +438,7 @@ $("#inputSubmitPasswordChange").click(function () {
     })
         .done(function (data) {
             console.log("success");
+            data=JSON.parse(data);
             alert("succeeding submitting your form");
             window.location.href = "my_account.html"
         })
