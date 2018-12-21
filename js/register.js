@@ -7,8 +7,8 @@ $("#submit_register").click(function (event) {
     var address = $("#address").val();
     var email = $("#email").val();
     var telephone = $("#telephone").val();
-    var password = $("#passwd").val();
-    var re_passwd = $("#re_password").val();
+    var password = $("#register_passwd").val();
+    var re_passwd = $("#register_re_password").val();
     var username = $("#cusername").val();
     var verification = $("#verification").val();
     var verification_back;
@@ -82,7 +82,7 @@ $("#submit_register").click(function (event) {
 /*发送验证码*/
 $("#send_verification").click(function (event) {
     /* Act on the event */
-    console.log(123);
+
     var email = $("#email").val();
     var telephone = $("#telephone").val();
 
@@ -140,17 +140,17 @@ $("#telephone").focus(function (event) {
     });
 });
 
-$("#password").focus(function (event) {
+$("#register_passwd").focus(function (event) {
     /* Act on the event */
     $(function () {
-        $("#password").popover('hide');
+        $("#register_passwd").popover('hide');
     });
 });
 
-$("#re_password").focus(function (event) {
+$("#register_re_password").focus(function (event) {
     /* Act on the event */
     $(function () {
-        $("#password").popover('hide');
+        $("#register_passwd").popover('hide');
     });
 });
 

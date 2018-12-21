@@ -1,12 +1,12 @@
-var a = {a:[{a:1},{b:2},{c:3}]};
-console.log(a.a[0].a);
-
 //登出
 $("#login_out").click(function () {
     deleteCookie("id");
 });
 
+
 $("#my_account_orders").click(function () {
+    //清空画布
+    $("#account_orders .ruler-order").siblings("tr").remove();
 
     //改变导航栏样式
     $(this).parent().attr("class", "is-active");
@@ -62,6 +62,7 @@ $("#my_account_orders").click(function () {
     })
         .done(function (data) {
             console.log("success");
+            console.log(data);
             createTable(data);
 
         })
@@ -101,7 +102,7 @@ function createTable(data) {
         header.appendChild(id);
         header.appendChild(pay_method);
 
-        table.appendChild(header);
+        $(table).append(header);
 
         for (let j = 0; j < data.orders[i].goods.length; j++) {
             var content = document.createElement("tr");
@@ -152,7 +153,7 @@ function createTable(data) {
                 content.appendChild(view);
             }
 
-            table.appendChild(content);
+            $(table).append(content);
         }//for j
 
     }//for n
@@ -161,36 +162,42 @@ function createTable(data) {
 //地址信息管理
 
 //用户添加地址_事件函数
-function addItem(username="null",address="",tel="1") {
-    $(this).siblings("div").append(" <div class=\"address-item-style shadow p-3 mb-5 bg-white rounded\">\n" +
-        "                                                    <a href=\"javascript:void(0)\" class=\"reset_address\"><img\n" +
-        "                                                            src=\"./images/icons/geer.png\"/></a>\n" +
-        "                                                    <a href=\"javascript:void(0)\" class=\"delete_address\"><img\n" +
-        "                                                            src=\"./images/icons/subtract.png\"/></a>\n" +
-        "                                                    <input class=\"address_name\" type=\"text\" value=\""+username+"/><br>\n" +
+function addItem(username, address, tel) {
+    $("#account_addresses .address_form").append("<div class=\"address-item-style shadow p-3 mb-5 bg-white rounded\">\n" +
+        "                                                    <a href=\"javascript:void(0)\" class=\"reset_address\">\n" +
+        "                                                        <img src=\"./images/icons/geer.png\"/></a>\n" +
+        "                                                    <a href=\"javascript:void(0)\" class=\"delete_address\">\n" +
+        "                                                        <img src=\"./images/icons/subtract.png\"/></a>\n" +
+        "                                                    <input class=\"address_name\" type=\"text\" value=\"" + username + "\"/><br>\n" +
         "                                                    <label>addr:</label><br>\n" +
-        "                                                    <textarea class=\"address_addr\" type=\"text\">"+address+"</textarea>\n" +
+        "                                                    <textarea class=\"address_addr\" type=\"text\" >" + address + "</textarea>\n" +
         "                                                    <br><label>tel:</label><br>\n" +
-        "                                                    <input class=\"address_tel\" type=\"text\" value=\""+tel+"/>\n" +
+        "                                                    <input class=\"address_tel\" type=\"text\" value=\"" + tel + "\" />\n" +
         "                                                </div>");
 
-    $(".delete_address").last().click(function () {
-        $(this).parent("div").remove();
+    $("#account_addresses .address_form .delete_address").last().on("click", function () {
+        // alert(this.tagName);
+        var obj = this;
+        $("#account_addresses .address_form .delete_address").each(function (index, el) {
+            if (el === obj) {
+                // console.log(index);
+                deleteAddressForm(index, this);
+            }
+        })
     });
 
-    $(".reset_address").last().click(function () {
-        if ($(this).siblings("input").attr("disabled") == "disabled") {
-            $(this).siblings("input").attr("disabled", false);
-            $(this).siblings("textarea").attr("disabled", false);
-        }
-        else {
-            $(this).siblings("input").attr("disabled", "disabled");
-            $(this).siblings("textarea").attr("disabled", "disabled");
-        }
+    $("#account_addresses .address_form .reset_address").last().on("click", function () {
+        // alert(this.tagName);
+        var obj = this;
+        $("#account_addresses .address_form .reset_address").each(function (index, el) {
+            if (el === obj) {
+                // console.log(index);
+                resetAddressForm(index, this);
+            }
+        })
     });
 }
-//用户添加地址_事件
-$("#add_address").click(addItem());
+
 
 //加载用户地址数据
 //接收用户address 数据
@@ -202,6 +209,8 @@ $("#add_address").click(addItem());
 // }
 $("#my_account_addresses").click(function () {
 
+    $("#account_addresses .address_form").empty();
+
     //改变导航栏样式
     $(this).parent().attr("class", "is-active");
     $(this).parent().siblings().attr("class", "none");
@@ -209,6 +218,11 @@ $("#my_account_addresses").click(function () {
     //改变内容
     $("#account_addresses").attr("class", "show-state");
     $("#account_addresses").siblings().attr("class", "hidden-state");
+
+    //用户添加地址_事件
+    $(".woocommerce-MyAccount-content #add_address_items").click(function () {
+        addItem("", "", "");
+    });
 
     Mock.mock(/\.json/, {
         "obj":
@@ -220,7 +234,7 @@ $("#my_account_addresses").click(function () {
             },
                 {
                     "id": 2,
-                    "username": "zhang san",
+                    "username": "wang wu",
                     "address": "xxxxxxx",
                     "tel": "123123123"
                 }]
@@ -236,8 +250,12 @@ $("#my_account_addresses").click(function () {
     })
         .done(function (data) {
             console.log("success");
-            for(let i=0;i<data.obj.length;i++){
-                addItem(data.obj[i].username, data.obj[i].address,data.obj[i].tel);
+            console.log(data);
+            for (let i = 0; i < data.obj.length; i++) {
+                addItem(data.obj[i].username, data.obj[i].address, data.obj[i].tel, "disabled");
+
+                $("#account_addresses .address_form").find("input").attr("disabled", "disabled");
+                $("#account_addresses .address_form").find("textarea").attr("disabled", "disabled");
             }
         })
         .fail(function () {
@@ -246,25 +264,80 @@ $("#my_account_addresses").click(function () {
         .always(function () {
             console.log("complete");
         })
+
 })
 
+//
+// //删除地址
+// //Ajax 发送用户删除地址id号，但其id后的地址必须都要减一，注：id不固定
+// //index = 1, 2, 3 ....n
+//
+// 服务器需要发送接收成功消息
+// 消息可以为空
+function deleteAddressForm(index, el) {
+    Mock.mock(/\.json/, {});
 
-//删除地址
-//Ajax 发送用户删除地址id号，但其id后的地址必须都要减一
-//index = 1, 2, 3 ....n
-$(".delete_address").each(function (index, el) {
-    $(el).click(function () {
+    $.ajax({
+        url: "test.json",
+        async: false,
+        timeout: 5000,
+        type: "post",
+        dataType: "json",
+        data: index,
+    })
+        .done(function (data) {
+            console.log("success");
+            $(el).parent("div").remove();
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        })
+}
+
+// 修改地址
+// 发送用户修改后的，用户名，地址，电话，对应id号
+// {
+//     "id":1,
+//     "username":"zhang san",
+//     "address":"xxxxxxx",
+//     "tel":"123123123"
+// }
+//
+// 服务器需要发送接收成功消息
+// 消息可以为空
+function resetAddressForm(index, el) {
+    // console.log(index);
+    Mock.mock(/\.json/, {});
+
+    if ($(el).siblings("input").attr("disabled") == "disabled") {
+        $(el).siblings("input").attr("disabled", false);
+        $(el).siblings("textarea").attr("disabled", false);
+    }
+    else {
+        var data = {
+            "id": index,
+            "username": $(el).siblings("input").eq(0).val(),
+            "address": $(el).siblings("input").eq(1).val(),
+            "tel": $(el).siblings("input").eq(2).val(),
+        };
+
+        //发送用户修改表单数据
         $.ajax({
             url: "test.json",
             async: false,
             timeout: 5000,
             type: "post",
             dataType: "json",
-            data: index,
+            data: data,
         })
             .done(function (data) {
                 console.log("success");
-                $(this).parent("div").remove();
+                console.log(data)
+                $(el).siblings("input").attr("disabled", "disabled");
+                $(el).siblings("textarea").attr("disabled", "disabled");
             })
             .fail(function () {
                 console.log("error");
@@ -272,53 +345,133 @@ $(".delete_address").each(function (index, el) {
             .always(function () {
                 console.log("complete");
             })
+    }
+}
+
+
+$("#my_account_detail").click(function () {
+
+    setCookie("id", "123", 1);
+
+    //改变导航栏样式
+    $(this).parent().attr("class", "is-active");
+    $(this).parent().siblings().attr("class", "none");
+
+    //改变内容
+    $("#account_detail").attr("class", "show-state");
+    $("#account_detail").siblings().attr("class", "hidden-state");
+
+    //获得用户数据
+
+    var id = getCookie("id");
+    //例示数据
+    Mock.mock(/\.json/, {
+        "firstname": "san",
+        "lastname": "zhang",
+        "email": "123@123.com",
+        "telephone": "123"
+    });
+
+    //更新表单
+    $.ajax({
+        url: "test.json",
+        dataType: "json",
+        timeout: 5000,
+        type: "post",
+        data: id
     })
+        .done(function (data) {
+            console.log("success");
+            // console.log(data)
+            $("#inputFirstName").val(data.firstname);
+            $("#inputLastName").val(data.lastname);
+            $("#inputEmail").val(data.email);
+            $("#inputTel").val(data.telephone);
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        })
 });
 
-//修改地址
-//发送用户修改后的，用户名，地址，电话，对应id号
-//{
-//  "id":1,
-//  "username":"zhang san",
-//  "address":"xxxxxxx",
-//  "tel":"123123123"
-// }
-$(".reset_address").each(function (index, el) {
-    $(el).click(function (el) {
-        console.log(index);
-        if ($(this).siblings("input").attr("disabled") == "disabled") {
-            $(this).siblings("input").attr("disabled", false);
-            $(this).siblings("textarea").attr("disabled", false);
-        }
-        else {
-            var data = {
-                "id": index,
-                "username": $(this).siblings("input")[0].val(),
-                "address": $(this).siblings("input")[1].val(),
-                "tel": $(this).siblings("input")[2].val(),
-            };
+//提交表单
+$("#inputSubmitPasswordChange").click(function () {
+    console.log(123);
 
-            //发送用户修改表单数据
-            $.ajax({
-                url: "test.json",
-                async: false,
-                timeout: 5000,
-                type: "post",
-                dataType: "json",
-                data: data,
-            })
-                .done(function (data) {
-                    console.log("success");
-                    $(this).siblings("input").attr("disabled", "disabled");
-                    $(this).siblings("textarea").attr("disabled", "disabled");
-                })
-                .fail(function () {
-                    console.log("error");
-                })
-                .always(function () {
-                    console.log("complete");
-                })
-        }
+    let old_password = $("#inputOldPassword").val();
+    let password = $("#inputNewPassword").val();
+    let re_passwd = $("#inputComfirmPassword").val();
+    let telephone = $("#inputTel").val();
+
+    // 验证密码输入是否一致
+    if ($.trim(password) != $.trim(re_passwd)) {
+        // console.log("123");
+        $(function () {
+            $("#inputNewPassword").popover('show');
+        });
+        return false;
+    }
+    //验证电话输入是否规范
+    var reg = /^\d+$/;
+    if (reg.test(telephone) == false) {
+        $(function () {
+            $("#inputTel").popover('show');
+        });
+        return false;
+    }
+
+    var cus_form = $("#account_detail").children("form").serialize();
+
+    //例示数据
+    Mock.mock(/\.txt/, {});
+
+    $.ajax({
+        url: "test.json",
+        dataType: "test",
+        timeout: 5000,
+        type: "post",
+        data: cus_form
     })
+        .done(function (data) {
+            console.log("success");
+            alert("succeeding submitting your form");
+            window.location.href = "my_account.html"
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        })
 });
 
+// 获取cookie
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+//设置cookie
+function setCookie(name, value, hours) {
+    if (hours) {
+        var date = new Date();
+        date.setTime(date.getTime() + (hours * 60 * 60 * 1000));
+        var expires = "; expires=" + date.toGMTString();
+    } else {
+        var expires = "";
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+// 删除cookie
+function deleteCookie(name) {
+    setCookie(name, "", -1);
+}

@@ -26,7 +26,7 @@ $(".submit-login input").click(function(event) {
 	})
 	.done(function(data) {
 		console.log("success");
-		setCookie("id",data.id,1,"");
+		setCookie("id",data.id,1);
 	})
 	.fail(function() {
 		console.log("error");
@@ -55,7 +55,6 @@ function checkUserState(el,attr){
 	}
 }
 
-
 $(".item-link").each(function(index, el) {
 	$(el).click(function(event) {
 		/* Act on the event */
@@ -69,6 +68,7 @@ $(".cart-content").each(function(index, el) {
 	});
 });
 
+//设置cookie
 function setCookie(name,value,hours) {
     if (hours) {
         var date = new Date();
@@ -78,17 +78,6 @@ function setCookie(name,value,hours) {
         var expires = "";
     }
     document.cookie = name+"="+value+expires+"; path=/";
-}
-// 获取cookie
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
 }
 // 删除cookie
 function deleteCookie(name) {
