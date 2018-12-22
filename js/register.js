@@ -1,23 +1,47 @@
-/*提交表单——用户注册*/
+//验证用户名是否可用
+$("#register_username").blur(function () {
+
+    $.ajax({
+        url: 'test.json',  ///改url为后端相关文件，需要返回是否可用，y：可用，n：不可
+        type: 'POST',
+        dataType: 'text',
+        data:$(this).val(),
+        timeout: 5000
+    })
+        .done(function (data) {
+            console.log("success");
+            if(data=="y"){
+
+            }
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        });
+})
+
+// 提交表单——用户注册
 $("#submit_register").click(function (event) {
 
     /* Act on the event */
-    var firstname = $("#firstname").val();
-    var lastname = $("#lastname").val();
-    var address = $("#address").val();
-    var email = $("#email").val();
-    var telephone = $("#telephone").val();
+    var firstname = $("#register_firstname").val();
+    var lastname = $("#register_lastname").val();
+    var address = $("#register_address").val();
+    var email = $("#register_email").val();
+    var telephone = $("#register_telephone").val();
     var password = $("#register_passwd").val();
     var re_passwd = $("#register_re_password").val();
-    var username = $("#cusername").val();
-    var verification = $("#verification").val();
+    var username = $("#register_username").val();
+    var verification = $("#register_verification").val();
     var verification_back;
 
     // 验证密码输入是否一致
     if ($.trim(password) != $.trim(re_passwd)) {
         // console.log("123");
         $(function () {
-            $("#password").popover('show');
+            $("#register_password").popover('show');
         });
         return false;
     }
@@ -25,7 +49,7 @@ $("#submit_register").click(function (event) {
     var reg = /^\d+$/;
     if (reg.test(telephone) == false) {
         $(function () {
-            $("#telephone").popover('show');
+            $("#register_telephone").popover('show');
         });
         return false;
     }
@@ -85,17 +109,17 @@ $("#send_verification").click(function (event) {
     /* Act on the event */
 
     var email = $("#email").val();
-    var telephone = $("#telephone").val();
+    var telephone = $("#register_telephone").val();
 
     if (email == "") {
         $(function () {
-            $("#email").popover('show');
+            $("#register_email").popover('show');
         });
         return;
     }
     if (telephone == "") {
         $(function () {
-            $("#telephone").popover('show');
+            $("#register_telephone").popover('show');
         });
         return;
     }
@@ -106,9 +130,9 @@ $("#send_verification").click(function (event) {
     // 发送验证码请求
 
     // 测试用
-    Mock.mock(/\.json/, {
+    Mock.mock(/\.json/, JSON.stringify({
         "code": "123"
-    })
+    }));
 
     $.ajax({
         url: 'test.json',   ///改url为后端相关文件_发送验证码
@@ -135,10 +159,10 @@ $("#send_verification").click(function (event) {
 
 
 /*用户输入提示*/
-$("#telephone").focus(function (event) {
+$("#register_telephone").focus(function (event) {
     /* Act on the event */
     $(function () {
-        $("#telephone").popover('hide');
+        $("#register_telephone").popover('hide');
     });
 });
 
@@ -163,11 +187,9 @@ $("#email").focus(function (event) {
     });
 });
 
-$("#verification").focus(function (event) {
+$("#register_verification").focus(function (event) {
     /* Act on the event */
     $(function () {
-        $("#verification").popover('hide');
+        $("#register_verification").popover('hide');
     });
 });
-
-//发送验证码

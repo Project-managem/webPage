@@ -40,47 +40,61 @@ $(".submit-login input").click(function(event) {
 
 
 //检测状态
-function checkUserState(el,attr){
-	var cookie = document.cookie;
-	// console.log(cookie =="");
-	if(cookie ==""){
-		console.log($(el).attr("href"));
-		var attr = $(el).attr("href");
-		// $(el).attr("href","javascript:void(0)");
+function checkUserState(el){
+	var cookie = getCookie("id");
+	// console.log(cookie);
+	if(cookie ==null){
+        // console.log(123);
 		$("#login_form").modal("show");
 		return false;
-		// $("#login_form").on("show.bs.modal",hander(el,attr));
 	}
 	else{
+        // $("#login_form").modal("hidden");
+		let href = $(el).attr("href");
+		// console.log(href);
+		// window.location.href=href;
 		return true;
 	}
 }
 
-$(".item-link").each(function(index, el) {
-	$(el).click(function(event) {
-		/* Act on the event */
-		return checkUserState(el);
-	});
-});
-$(".cart-content").each(function(index, el) {
-	$(el).click(function(event) {
-		/* Act on the event */
-		return checkUserState(el);
-	});
-});
+//用户未登录时，弹出登陆窗口
+$("#header #menu-checkout").find("a").each(function (index,el) {
+	$(this).click(function () {
+		return	checkUserState(el);
+    })
+})
+$("#header .widget-inner").find("a").each(function (index,el) {
+    $(this).click(function () {
+        return	checkUserState(el);
+    })
+})
 
+
+// $("#header .header-mid clearfix .logo-self").off("click");
+
+// 获取cookie
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
 //设置cookie
 function setCookie(name,value,hours) {
     if (hours) {
         var date = new Date();
         date.setTime(date.getTime()+(hours*60*60*1000));
-        var expires = "; expires="+date.toGMTString();
-    }else{
-        var expires = "";
-    }
-    document.cookie = name+"="+value+expires+"; path=/";
-}
 // 删除cookie
+var expires = "; expires="+date.toGMTString();
+}else{
+    var expires = "";
+}
+document.cookie = name+"="+value+expires+"; path=/";
+}
 function deleteCookie(name) {
     setCookie(name,"",-1);
 }

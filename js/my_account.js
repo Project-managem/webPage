@@ -16,42 +16,42 @@ $("#my_account_orders").click(function () {
     $("#account_orders").attr("class", "show-state");
     $("#account_orders").siblings().attr("class", "hidden-state");
 
-    // Mock.mock(/\.json/, {
-    //     "orders": [
-    //         {
-    //             "id": "n0001",
-    //             "date": "2018-10-3",
-    //             "method": "Alipay",
-    //             "goods": [
-    //                 {
-    //                     "image": "./images/1903/43.jpg",
-    //                     "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
-    //                     "num": "3",
-    //                 },
-    //                 {
-    //                     "image": "./images/1903/43.jpg",
-    //                     "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
-    //                     "num": "4"
-    //                 },
-    //             ],
-    //             "total": "100"
-    //         },
-    //         {
-    //             "id": "n0002",
-    //             "date": "2018-10-3",
-    //             "method": "Alipay",
-    //             "goods": [
-    //                 {
-    //                     "image": "./images/1903/43.jpg",
-    //                     "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
-    //                     "num": "2"
-    //                 }
-    //             ],
-    //             "total": "30"
-    //         }
-    //     ]
-    //
-    // });
+    Mock.mock(/\.json/,JSON.stringify({
+        "orders": [
+            {
+                "id": "n0001",
+                "date": "2018-10-3",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "3",
+                    },
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "4"
+                    },
+                ],
+                "total": "100"
+            },
+            {
+                "id": "n0002",
+                "date": "2018-10-3",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2"
+                    }
+                ],
+                "total": "30"
+            }
+        ]
+
+    }));
 
     $.ajax({
         url: "test.json",
@@ -224,21 +224,21 @@ $("#my_account_addresses").click(function () {
         addItem("", "", "");
     });
 
-    // Mock.mock(/\.json/, {
-    //     "obj":
-    //         [{
-    //             "id": 1,
-    //             "username": "zhang san",
-    //             "address": "xxxxxxx",
-    //             "tel": "123123123"
-    //         },
-    //             {
-    //                 "id": 2,
-    //                 "username": "wang wu",
-    //                 "address": "xxxxxxx",
-    //                 "tel": "123123123"
-    //             }]
-    // });
+    Mock.mock(/\.json/, JSON.stringify({
+        "obj":
+            [{
+                "id": 1,
+                "username": "zhang san",
+                "address": "xxxxxxx",
+                "tel": "123123123"
+            },
+                {
+                    "id": 2,
+                    "username": "wang wu",
+                    "address": "xxxxxxx",
+                    "tel": "123123123"
+                }]
+    }));
 
     $.ajax({
         url: "test.json",
@@ -325,6 +325,7 @@ function resetAddressForm(index, el) {
             "tel": $(el).siblings("input").eq(2).val(),
         };
 
+        data = JSON.stringify(data);
         //发送用户修改表单数据
         $.ajax({
             url: "test.json",
@@ -366,12 +367,12 @@ $("#my_account_detail").click(function () {
 
     var id = getCookie("id");
     //例示数据
-    // Mock.mock(/\.json/,JSON.stringify( {
-    //     "firstname": "san",
-    //     "lastname": "zhang",
-    //     "email": "123@123.com",
-    //     "telephone": "123"
-    // }));
+    Mock.mock(/\.json/,JSON.stringify( {
+        "firstname": "san",
+        "lastname": "zhang",
+        "email": "123@123.com",
+        "telephone": "123"
+    }));
 
     //更新表单
     $.ajax({
