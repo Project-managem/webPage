@@ -163,6 +163,9 @@ function createTable(data) {
 
 //用户添加地址_事件函数
 function addItem(username, address, tel) {
+
+
+
     $("#account_addresses .address_form").append("<div class=\"address-item-style shadow p-3 mb-5 bg-white rounded\">\n" +
         "                                                    <a href=\"javascript:void(0)\" class=\"reset_address\">\n" +
         "                                                        <img src=\"./images/icons/geer.png\"/></a>\n" +
@@ -275,7 +278,7 @@ $("#my_account_addresses").click(function () {
 // 服务器需要发送接收成功消息
 // 消息可以为空
 function deleteAddressForm(index, el) {
-    Mock.mock(/\.json/, {});
+    // Mock.mock(/\.json/, {});
 
     $.ajax({
         url: "test.json",
@@ -285,9 +288,8 @@ function deleteAddressForm(index, el) {
         dataType: "json",
         data: index,
     })
-        .done(function (data) {
+        .done(function () {
             console.log("success");
-            data=JSON.parse(data);
             $(el).parent("div").remove();
         })
         .fail(function () {
@@ -401,7 +403,7 @@ $("#my_account_detail").click(function () {
 
 //提交表单
 $("#inputSubmitPasswordChange").click(function () {
-    console.log(123);
+    // console.log(123);
 
     let old_password = $("#inputOldPassword").val();
     let password = $("#inputNewPassword").val();

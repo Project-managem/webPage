@@ -152,31 +152,35 @@
                                 <div class="">
                                     <h1 class="">Create Your ParknShop Account</h1>
                                     <div class="row">
-                                        <input class="col-md-5" type="text" id="register_name" name="firstname"
-                                               placeholder="first name" required="required">
+                                        <input class="col-md-11" type="text" id="register_customer_name" name="firstname"
+                                               placeholder="first name" data-toggle="popover" data-placement="bottom" data-trigger="manual"
+                                               title="this is must">
                                     </div>
 
                                     <div class="row">
                                         <input class="col-md-11" type="text" id="register_address" name="address"
-                                               placeholder="address" required="required">
+                                               placeholder="address" data-toggle="popover" data-placement="bottom" data-trigger="manual"
+                                               title="this is must">
                                     </div>
                                     <div class="row">
                                         <input class="col-md-11" type="email" id="register_email" name="email"
-                                               placeholder="Email" required="required" data-toggle="popover"
-                                               data-placement="bottom" data-trigger="manual" title="required">
+                                               placeholder="Email" data-toggle="popover" data-placement="bottom" data-trigger="manual"
+                                               title="this is must" >
                                     </div>
                                     <div class="row">
                                         <input class="col-md-11" type="text" id="register_username" name="cusername"
-                                               placeholder="username" minlength="6" required="required">
-                                        <img src="" class="col-md-1">
+                                               placeholder="username" minlength="6" data-toggle="popover" data-placement="bottom" data-trigger="manual"
+                                               title="the username has been used">
+                                        <img src="" class="col-md-1" name="check_availble" id="register_check_availble" style="padding-top:10px;">
                                     </div>
                                     <div class="row">
                                         <input class="col-md-11" type="password" id="register_passwd" name="passwd"
-                                               placeholder="password" required="required" data-toggle="popover"
+                                               placeholder="password" data-toggle="popover"
                                                data-placement="bottom" data-trigger="manual"
                                                title="The code you enter twice must be the same">
                                         <input class="col-md-11" type="password" id="register_re_password"
-                                               name="repassword" placeholder="re-password" required="required">
+                                               name="repassword" placeholder="re-password" data-toggle="popover" data-placement="bottom" data-trigger="manual"
+                                               title="this is must">
                                     </div>
                                     <div class="row">
                                         <select class="col-md-2" name="region">
@@ -185,17 +189,20 @@
                                             <option value="+44">+44</option>
                                         </select>
                                         <input class="col-md-offset-1 col-md-8" type="text" id="register_telephone"
-                                               name="telephone" placeholder="telephone number" required="required"
+                                               name="telephone" placeholder="telephone number"
                                                data-toggle="popover" data-placement="bottom" data-trigger="manual"
                                                title="please input right telephone number">
                                     </div>
                                     <div class="row">
                                         <input class="col-md-6" type="text" id="register_verification" name="verification"
-                                               placeholder="verification code" required="required" data-toggle="popover"
+                                               placeholder="verification code" data-toggle="popover"
                                                data-placement="bottom" data-trigger="manual"
                                                title="code is Verification code error">
                                         <button type="button" class="col-md-2 col-md-offset-3" id="send_verification">
                                             Send
+                                        </button>
+                                        <button type="button" class="col-md-2 col-md-offset-3" id="check_verification" style="display: none;background-color:deepskyblue;">
+                                            Check
                                         </button>
                                     </div>
                                     <div class="row">
@@ -205,7 +212,7 @@
                                             </a>
                                         </span>
                                         <input class="col-md-2 col-md-offset-5 submit" type="submit"
-                                               id="submit_register" name="submit" value="Submit">
+                                               id="submit_register" name="submit" value="Submit" disabled="disabled" style="background-color:grey;">
                                     </div>
                                 </div>
                             </form>
@@ -804,44 +811,6 @@
 <script type="module" src="js/register.js"></script>
 <script type="module" src="js/login.js"></script>
 
-<script type="text/javascript">
-    var sticky_navigation_offset_top = $("#header .header-bottom").offset().top;
-    var sticky_navigation = function () {
-        var scroll_top = $(window).scrollTop();
-        if (scroll_top > sticky_navigation_offset_top) {
-            $("#header .header-bottom").addClass("sticky-menu");
-            $("#header .header-bottom").css({"top": 0, "left": 0, "right": 0});
-        } else {
-            $("#header .header-bottom").removeClass("sticky-menu");
-        }
-    };
-    sticky_navigation();
-    $(window).scroll(function () {
-        sticky_navigation();
-    });
-
-    $(document).ready(function () {
-        $(".show-dropdown").each(function () {
-            $(this).on("click", function () {
-                $(this).toggleClass("show");
-                var $element = $(this).parent().find("> ul");
-                $element.toggle(300);
-            });
-        });
-    });
-</script>
-
-<!--[if gte IE 9]><!-->
-<script type="text/javascript">
-    var request, b = document.body, c = 'className', cs = 'customize-support',
-        rcs = new RegExp('(^|\\s+)(no-)?' + cs + '(\\s+|$)');
-    request = true;
-
-    b[c] = b[c].replace(rcs, ' ');
-    // The customizer requires postMessage and CORS (if the site is cross domain)
-    b[c] += ( window.postMessage && request ? ' ' : ' no-' ) + cs;
-</script>
-<!--<![endif]-->
 </body>
 </html>
 
