@@ -26,8 +26,7 @@ $("#register_username").blur(function () {
 $("#submit_register").click(function (event) {
 
     /* Act on the event */
-    var firstname = $("#register_firstname").val();
-    var lastname = $("#register_lastname").val();
+    var customer_name = $("#register_name").val();
     var address = $("#register_address").val();
     var email = $("#register_email").val();
     var telephone = $("#register_telephone").val();
@@ -61,7 +60,7 @@ $("#submit_register").click(function (event) {
         "customer_telephone": telephone,
         "customer_email": email,
         "customer_address": address,
-        "customer_name": firstname + lastname,
+        "customer_name": customer_name,
     };
 
     var json = JSON.stringify(obj);
@@ -136,8 +135,8 @@ $("#send_verification").click(function (event) {
 
     $.ajax({
         url: 'test.json',   ///改url为后端相关文件_发送验证码
-        type: 'GET',
-        dataType: 'text',
+        type: 'json',
+        dataType: 'json',
         data: telephone,
         timeout: 5000,
     })
