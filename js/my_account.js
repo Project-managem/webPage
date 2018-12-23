@@ -18,37 +18,40 @@ $("#my_account_orders").click(function () {
 
     Mock.mock(/\.json/,JSON.stringify({
         "orders": [
+        {
+            "id": "n0001",
+            "date": "2018-10-3",
+            "method": "Alipay",
+            "goods": [
             {
-                "id": "n0001",
-                "date": "2018-10-3",
-                "method": "Alipay",
-                "goods": [
-                    {
-                        "image": "./images/1903/43.jpg",
-                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
-                        "num": "3",
-                    },
-                    {
-                        "image": "./images/1903/43.jpg",
-                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
-                        "num": "4"
-                    },
-                ],
-                "total": "100"
+                "image": "./images/1903/43.jpg",
+                "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                "num": "3",
             },
             {
-                "id": "n0002",
-                "date": "2018-10-3",
-                "method": "Alipay",
-                "goods": [
-                    {
-                        "image": "./images/1903/43.jpg",
-                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
-                        "num": "2"
-                    }
-                ],
-                "total": "30"
+                "image": "./images/1903/43.jpg",
+                "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                "num": "4"
+            },
+            ],
+            "total": "100",
+            "state":"processing"
+
+        },
+        {
+            "id": "n0002",
+            "date": "2018-10-3",
+            "method": "Alipay",
+            "goods": [
+            {
+                "image": "./images/1903/43.jpg",
+                "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                "num": "2"
             }
+            ],
+            "total": "30",
+            "state":"finish"
+        }
         ]
 
     }));
@@ -60,18 +63,18 @@ $("#my_account_orders").click(function () {
         dataType: "json",
         data: "order",
     })
-        .done(function (data) {
-            console.log("success");
-            data=JSON.parse(data);
-            createTable(data);
+    .done(function (data) {
+        console.log("success");
+        data=JSON.parse(data);
+        createTable(data);
 
-        })
-        .fail(function () {
-            console.log("error");
-        })
-        .always(function () {
-            console.log("complete");
-        })
+    })
+    .fail(function () {
+        console.log("error");
+    })
+    .always(function () {
+        console.log("complete");
+    })
 });
 
 //创建用户订单表
@@ -125,10 +128,19 @@ function createTable(data) {
 
             var evalution = document.createElement("td");
             evalution.setAttribute("class", "evalution-orders");
-            var evalution_a = document.createElement("a");
-            evalution_a.appendChild(document.createTextNode("evalution"));
-            evalution_a.setAttribute("href", "./evalution_info.html");
-            evalution.appendChild(evalution_a);
+            if(data.orders[i].state == "finish"){
+                var evalution_a = document.createElement("a");
+                evalution_a.appendChild(document.createTextNode("evalution"));
+                evalution_a.setAttribute("href", "./evalution_info.html");
+                evalution.appendChild(evalution_a);
+            }
+            else{
+                var processing = document.createElement("a");
+                processing.appendChild(document.createTextNode("processing"));
+                processing.setAttribute("href", "javascript:void(0)");
+                evalution.appendChild(processing);
+            }
+            
 
             content.appendChild(img);
             content.appendChild(title);
@@ -179,7 +191,7 @@ function addItem(id,username, address, tel) {
         "                                                </div>");
 
      //添加删除事件
-    $("#account_addresses .address_form .delete_address").last().on("click", function () {
+     $("#account_addresses .address_form .delete_address").last().on("click", function () {
         // alert(this.tagName);
         var obj = this;
         $("#account_addresses .address_form .delete_address").each(function (index, el) {
@@ -203,6 +215,10 @@ function addItem(id,username, address, tel) {
     });
 }
 
+    //用户添加地址_事件
+    $(".woocommerce-MyAccount-content #add_address_items").click(function () {
+        addItem("","", "", "");
+    });
 
 //预加载用户地址数据
 //接收用户address 数据
@@ -224,25 +240,22 @@ $("#my_account_addresses").click(function () {
     $("#account_addresses").attr("class", "show-state");
     $("#account_addresses").siblings().attr("class", "hidden-state");
 
-    //用户添加地址_事件
-    $(".woocommerce-MyAccount-content #add_address_items").click(function () {
-        addItem("", "", "");
-    });
+
 
     Mock.mock(/\.json/, JSON.stringify({
         "obj":
-            [{
-                "id": 1,
-                "username": "zhang san",
-                "address": "xxxxxxx",
-                "tel": "123123123"
-            },
-                {
-                    "id": 2,
-                    "username": "wang wu",
-                    "address": "xxxxxxx",
-                    "tel": "123123123"
-                }]
+        [{
+            "id": 1,
+            "username": "zhang san",
+            "address": "xxxxxxx",
+            "tel": "123123123"
+        },
+        {
+            "id": 2,
+            "username": "wang wu",
+            "address": "xxxxxxx",
+            "tel": "123123123"
+        }]
     }));
 
     $.ajax({
@@ -253,22 +266,22 @@ $("#my_account_addresses").click(function () {
         dataType: "json",
         data: "Address"
     })
-        .done(function (data) {
-            console.log("success");
-            data=JSON.parse(data);
-            for (let i = 0; i < data.obj.length; i++) {
-                addItem(data.obj[i].id,data.obj[i].username, data.obj[i].address, data.obj[i].tel);
+    .done(function (data) {
+        console.log("success");
+        data=JSON.parse(data);
+        for (let i = 0; i < data.obj.length; i++) {
+            addItem(data.obj[i].id,data.obj[i].username, data.obj[i].address, data.obj[i].tel);
 
-                $("#account_addresses .address_form").find("input").attr("disabled", "disabled");
-                $("#account_addresses .address_form").find("textarea").attr("disabled", "disabled");
-            }
-        })
-        .fail(function () {
-            console.log("error");
-        })
-        .always(function () {
-            console.log("complete");
-        })
+            $("#account_addresses .address_form").find("input").attr("disabled", "disabled");
+            $("#account_addresses .address_form").find("textarea").attr("disabled", "disabled");
+        }
+    })
+    .fail(function () {
+        console.log("error");
+    })
+    .always(function () {
+        console.log("complete");
+    })
 
 })
 
@@ -292,16 +305,16 @@ function deleteAddressForm(index, el) {
         dataType: "json",
         data:JSON.stringify(id)
     })
-        .done(function () {
-            console.log("success");
-            $(el).parent("div").remove();
-        })
-        .fail(function () {
-            console.log("error");
-        })
-        .always(function () {
-            console.log("complete");
-        })
+    .done(function () {
+        console.log("success");
+        $(el).parent("div").remove();
+    })
+    .fail(function () {
+        console.log("error");
+    })
+    .always(function () {
+        console.log("complete");
+    })
 }
 
 // 修改地址
@@ -332,10 +345,10 @@ function resetAddressForm(index, el) {
     }
     else {
         var data = {
-            "id": "",
+            "id": $(el).parent("div").attr("id"),
             "username": $(el).siblings("input").eq(0).val(),
-            "address": $(el).siblings("input").eq(1).val(),
-            "tel": $(el).siblings("input").eq(2).val(),
+            "address": $(el).siblings("textarea").val(),
+            "tel": $(el).siblings("input").eq(1).val(),
         };
 
         data = JSON.stringify(data);
@@ -348,26 +361,29 @@ function resetAddressForm(index, el) {
             dataType: "json",
             data: data,
         })
-            .done(function (data) {
-                console.log("success");
+        .done(function (data) {
+            console.log("success");
                 // data=JSON.parse(data);
                 $(el).siblings("input").attr("disabled", "disabled");
                 $(el).siblings("textarea").attr("disabled", "disabled");
 
                 $(el).parent("div").attr("id",data.id);
             })
-            .fail(function () {
-                console.log("error");
-            })
-            .always(function () {
-                console.log("complete");
-            })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        })
     }
 }
 
 
-
+//////////////////////////
+//
 //个人信息
+//
+//初始化个人信息
 $("#my_account_detail").click(function () {
 
     setCookie("id", "123", 1);
@@ -385,8 +401,7 @@ $("#my_account_detail").click(function () {
     var id = getCookie("id");
     //例示数据
     Mock.mock(/\.json/,JSON.stringify( {
-        "firstname": "san",
-        "lastname": "zhang",
+        "CustomerName": "Zhang San",
         "email": "123@123.com",
         "telephone": "123"
     }));
@@ -399,24 +414,71 @@ $("#my_account_detail").click(function () {
         type: "post",
         data: id
     })
-        .done(function (data) {
-            console.log("success");
+    .done(function (data) {
+        console.log("success");
             // console.log(data)
             data=JSON.parse(data);
-            $("#inputFirstName").val(data.firstname);
-            $("#inputLastName").val(data.lastname);
+            $("#inputCustomerName").val(data.CustomerName);
             $("#inputEmail").val(data.email);
             $("#inputTel").val(data.telephone);
         })
-        .fail(function () {
-            console.log("error");
-        })
-        .always(function () {
-            console.log("complete");
-        })
+    .fail(function () {
+        console.log("error");
+    })
+    .always(function () {
+        console.log("complete");
+    })
 });
 
-//提交表单
+//修改个人信息
+$("#inputResetSelfinfo").click(function(event) {
+    /* Act on the event */
+    $("#inputCustomerName").removeAttr('readonly');
+    $("#inputEmail").removeAttr('readonly');
+    $("#inputTel").removeAttr('readonly');
+
+    $(this).css("display","none");
+    $("#inputSubmitSelfinfo").css("display","block");
+});
+
+//提交个人信息
+$("#inputSubmitSelfinfo").click(function(event) {
+    /* Act on the event */
+    var username = $("#inputCustomerName").val();
+    var email = $("#inputEmail").val();
+    var tel = $("#inputTel").val();
+
+    var send = {
+        "CustomerName":username,
+        "email": email,
+        "telephone": tel
+    }
+
+    $.ajax({
+        url: 'test.json',
+        type: 'post',
+        dataType: 'JSON',
+        data: JSON.stringify(send),
+    })
+    .done(function() {
+        console.log("success");
+
+        $("#inputCustomerName").attr('readonly',"readonly");
+        $("#inputEmail").attr('readonly',"readonly");
+        $("#inputTel").attr('readonly',"readonly");
+        $("#inputSubmitSelfinfo").css("display","none");
+        $("#inputResetSelfinfo").css("display","block");
+    })
+    .fail(function() {
+        console.log("error");
+    })
+    .always(function() {
+        console.log("complete");
+    });
+    
+});
+
+//提交修改密码
 $("#inputSubmitPasswordChange").click(function () {
     // console.log(123);
 
@@ -442,30 +504,34 @@ $("#inputSubmitPasswordChange").click(function () {
         return false;
     }
 
-    var cus_form = $("#account_detail").children("form").serialize();
+    //发送后端数据格式
+    var send ={
+        "old_password":old_password,
+        "new_password":password
+    }
 
     //例示数据
     // Mock.mock(/\.txt/, {});
 
     $.ajax({
         url: "test.json",
-        dataType: "test",
+        dataType: "json",
         timeout: 5000,
         type: "post",
-        data: cus_form
+        data: JSON.stringify(send)
     })
-        .done(function (data) {
-            console.log("success");
-            data=JSON.parse(data);
-            alert("succeeding submitting your form");
-            window.location.href = "my_account.html"
-        })
-        .fail(function () {
-            console.log("error");
-        })
-        .always(function () {
-            console.log("complete");
-        })
+    .done(function (data) {
+        console.log("success");
+        data=JSON.parse(data);
+        alert("succeeding submitting your form");
+        window.location.href = "my_account.html"
+    })
+    .fail(function () {
+        console.log("error");
+    })
+    .always(function () {
+        console.log("complete");
+    })
 });
 
 // 获取cookie

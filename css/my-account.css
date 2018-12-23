@@ -98,3 +98,7 @@
     right: 20px;
     bottom: 15px;
 }
+
+.woocommerce-MyAccount-content #account_detail .self_form {
+    margin-bottom: 5rem; 
+}
