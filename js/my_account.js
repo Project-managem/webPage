@@ -162,11 +162,11 @@ function createTable(data) {
 //地址信息管理
 
 //用户添加地址_事件函数
-function addItem(username, address, tel) {
+function addItem(id,username, address, tel) {
 
 
 
-    $("#account_addresses .address_form").append("<div class=\"address-item-style shadow p-3 mb-5 bg-white rounded\">\n" +
+    $("#account_addresses .address_form").append("<div class=\"address-item-style shadow p-3 mb-5 bg-white rounded\" id='"+id+"'>\n" +
         "                                                    <a href=\"javascript:void(0)\" class=\"reset_address\">\n" +
         "                                                        <img src=\"./images/icons/geer.png\"/></a>\n" +
         "                                                    <a href=\"javascript:void(0)\" class=\"delete_address\">\n" +
@@ -178,6 +178,7 @@ function addItem(username, address, tel) {
         "                                                    <input class=\"address_tel\" type=\"text\" value=\"" + tel + "\" />\n" +
         "                                                </div>");
 
+     //添加删除事件
     $("#account_addresses .address_form .delete_address").last().on("click", function () {
         // alert(this.tagName);
         var obj = this;
@@ -189,6 +190,7 @@ function addItem(username, address, tel) {
         })
     });
 
+    //添加修改事件
     $("#account_addresses .address_form .reset_address").last().on("click", function () {
         // alert(this.tagName);
         var obj = this;
@@ -202,7 +204,7 @@ function addItem(username, address, tel) {
 }
 
 
-//加载用户地址数据
+//预加载用户地址数据
 //接收用户address 数据
 //{
 //  "id":1, //id 可以不要，我用不到
@@ -255,7 +257,7 @@ $("#my_account_addresses").click(function () {
             console.log("success");
             data=JSON.parse(data);
             for (let i = 0; i < data.obj.length; i++) {
-                addItem(data.obj[i].username, data.obj[i].address, data.obj[i].tel, "disabled");
+                addItem(data.obj[i].id,data.obj[i].username, data.obj[i].address, data.obj[i].tel);
 
                 $("#account_addresses .address_form").find("input").attr("disabled", "disabled");
                 $("#account_addresses .address_form").find("textarea").attr("disabled", "disabled");
@@ -280,13 +282,15 @@ $("#my_account_addresses").click(function () {
 function deleteAddressForm(index, el) {
     // Mock.mock(/\.json/, {});
 
+    var id = $(el).parent("div").attr("id");
+
     $.ajax({
         url: "test.json",
         async: false,
         timeout: 5000,
         type: "post",
         dataType: "json",
-        data: index,
+        data:JSON.stringify(id)
     })
         .done(function () {
             console.log("success");
@@ -313,7 +317,14 @@ function deleteAddressForm(index, el) {
 // 消息可以为空
 function resetAddressForm(index, el) {
     // console.log(index);
-    // Mock.mock(/\.json/, {});
+
+    // 返回数据,例子
+    // {
+    //     "id":"1"
+    // }
+    Mock.mock(/\.json/, {
+        "id|1-100":1
+    });
 
     if ($(el).siblings("input").attr("disabled") == "disabled") {
         $(el).siblings("input").attr("disabled", false);
@@ -321,7 +332,7 @@ function resetAddressForm(index, el) {
     }
     else {
         var data = {
-            "id": index,
+            "id": "",
             "username": $(el).siblings("input").eq(0).val(),
             "address": $(el).siblings("input").eq(1).val(),
             "tel": $(el).siblings("input").eq(2).val(),
@@ -339,9 +350,11 @@ function resetAddressForm(index, el) {
         })
             .done(function (data) {
                 console.log("success");
-                data=JSON.parse(data);
+                // data=JSON.parse(data);
                 $(el).siblings("input").attr("disabled", "disabled");
                 $(el).siblings("textarea").attr("disabled", "disabled");
+
+                $(el).parent("div").attr("id",data.id);
             })
             .fail(function () {
                 console.log("error");
@@ -353,6 +366,8 @@ function resetAddressForm(index, el) {
 }
 
 
+
+//个人信息
 $("#my_account_detail").click(function () {
 
     setCookie("id", "123", 1);
