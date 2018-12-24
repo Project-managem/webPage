@@ -1,0 +1,25 @@
+.inline-block{
+    display: inline-block;
+}
+#evalution .item{
+    margin: 2rem 0;
+
+}
+
+#evalution .item .title{
+    height: 50px;
+
+}
+
+#evalution .item .title span{
+    line-height: 50px;
+    font-size: 20px;
+}
+
+#evalution .item .evalution{
+
+}
+#evalution .item .evalution img{
+    display: inline-block;
+    margin: 0 1rem;
+}

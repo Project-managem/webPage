@@ -30,7 +30,8 @@
     <link rel="stylesheet" href="css/app-responsive.css"/>
 
     <!--add by xie-->
-    <link rel="stylesheet" href="css/register.css"/>
+    <link rel="stylesheet" href="css/evalution.css"/>
+
 </head>
 
 <body class="page page-id-6 home-style1">
@@ -81,8 +82,10 @@
                                     <div class="topsearch-entry">
                                         <form method="get" action="">
                                             <div>
-                                                <input type="text" value="" name="s" placeholder="Enter your keyword...">
-                                                <button type="submit" title="Search" class="fa fa-search button-search-pro form-button"></button>
+                                                <input type="text" value="" name="s"
+                                                       placeholder="Enter your keyword...">
+                                                <button type="submit" title="Search"
+                                                        class="fa fa-search button-search-pro form-button"></button>
                                             </div>
                                         </form>
                                     </div>
@@ -144,146 +147,42 @@
     <div class="container">
         <div class="row">
             <div id="contents" role="main" class="main-page  col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="post-6 page type-page status-publish hentry">
-                    <div class="entry">
-                        <div class="entry-content">
-                            <header>
-                                <h2 class="entry-title">My Account</h2>
-                            </header>
-
-                            <div class="entry-content">
-                                <div class="woocommerce">
-                                    <nav class="woocommerce-MyAccount-navigation">
-                                        <ul>
-                                            <li class="is-active">
-                                                <a href="my_account.html">Dashboard</a>
-                                            </li>
-
-                                            <li>
-                                                <a href="javascript:void(0)" id="my_account_orders">Orders</a>
-                                            </li>
-
-                                            <li>
-                                                <a href="javascript:void(0)" id="my_account_addresses">Addresses</a>
-                                            </li>
-
-                                            <li>
-                                                <a href="javascript:void(0)" id="my_account_detail">Account
-                                                    Details</a>
-                                            </li>
-
-                                            <li>
-                                                <a href="index.html" id="login_out">Logout</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-
-                                    <div class="woocommerce-MyAccount-content">
-                                        <div class="show-state">
-                                            <p>Welcome to personal information system , you can alter your information here</p>
-                                        </div>
-                                        <div class="hidden-state" id="account_dashboard">
-                                            <p>Welcome to Personal Information System , you can check your orders and
-                                                reset your information(address，phoneNumber,and so on) here</p>
-                                        </div>
-                                        <div class="hidden-state" id="account_orders">
-                                            <table class="account-order">
-                                                <tbody>
-                                                <tr class="ruler-order">
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="hidden-state" id="account_addresses">
-                                            <span>The following address will be used on the checkout ( the first address
-                                                will be default address ). You can click </span>
-                                            <img style="display: inline" src="./images/icons/geer.png"/>
-                                            <span>to change and save your address or click </span>,
-                                            <a href="javascript:void(0)"><img id="add_address_items" src="./images/icons/add.png" style="display: inline"/></a>
-                                            <span>here to set a new one, then you can also click </span>
-                                            <img src="./images/icons/subtract.png" style="display: inline"/>
-                                            <span> to delete the address</span>
-                                            <div class="address_form">
-                                                <!--<div class="address-item-style shadow p-3 mb-5 bg-white rounded">
-                                                    <a href="javascript:void(0)" class="reset_address">
-                                                        <img src="./images/icons/geer.png"/></a>
-                                                    <a href="javascript:void(0)" class="delete_address">
-                                                        <img src="./images/icons/subtract.png"/></a>
-                                                    <input class="address_name" type="text" value="Zhang San" disabled="disabled"/><br>
-                                                    <label>addr:</label><br>
-                                                    <textarea class="address_addr" type="text" disabled="disabled">Permanent Address Thomas Nolan Kaszas II 5322 Otter Lane Middleberge FL 32068</textarea>
-                                                    <br><label>tel:</label><br>
-                                                    <input class="address_tel" type="text" value="12345678900" disabled="disabled" />
-                                                </div>-->
-                                            </div>
-                                        </div>
-                                        <div class="hidden-state" id="account_detail">
-                                            <form>
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-4">
-                                                        <label for="inputFirstName">First name</label>
-                                                        <input type="text" class="form-control" id="inputFirstName">
-                                                    </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label for="inputLastName">Last name</label>
-                                                        <input type="text" class="form-control" id="inputLastName">
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-8">
-                                                        <label for="inputEmail">Email</label>
-                                                        <input type="email" class="form-control" id="inputEmail">
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-8">
-                                                        <label for="inputTel">Telephone</label>
-                                                        <input type="text" class="form-control" id="inputTel" data-toggle="popover" data-placement="bottom" data-trigger="manual" title="please input right telephone number">
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="col-md-8">
-                                                        <h4>Password Change</h4>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-8">
-                                                        <label for="inputOldPassword">Current Password (leave blank to leave unchanged)</label>
-                                                        <input type="password" class="form-control" id="inputOldPassword" data-toggle="popover" data-placement="bottom" data-trigger="manual" title="The old password is fault">
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-8">
-                                                        <label for="inputNewPassword">New Password (leave blank to leave unchanged)</label>
-                                                        <input type="password" class="form-control" id="inputNewPassword"  data-toggle="popover" data-placement="bottom" data-trigger="manual" title="The code you enter twice must be the same">
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-8">
-                                                        <label for="inputComfirmPassword">Confirm New Password</label>
-                                                        <input type="password" class="form-control" id="inputComfirmPassword">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <button type="submit" class="btn btn-primary" id="inputSubmitPasswordChange">Submit</button>
-                                                </div>
-
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div id="evalution">
+                    <div class="col-md-4">
+                        <img src="images/1903/3-300x300.jpg" alt="goods_image">
+                    </div>
+                    <div class="col-md-8 item">
+                        <div class="col-md-2 inline-block title"><span>point one</span></div>
+                        <div class="col-md-8 inline-block evalution">
+                            <img src="images/icons/terrible_.png" alt="terrible">
+                            <img src="images/icons/bad_.png" alt="bad">
+                            <img src="images/icons/normal_.png" alt="normal">
+                            <img src="images/icons/great_.png" alt="great">
+                            <img src="images/icons/prefect_.png" alt="prefect">
                         </div>
+                    </div>
+                    <div class="col-md-8 item ">
+                        <div class="col-md-2 inline-block title"><span>point one</span></div>
+                        <div class="col-md-8 inline-block evalution">
+                            <img src="images/icons/terrible_.png" alt="terrible">
+                            <img src="images/icons/bad_.png" alt="bad">
+                            <img src="images/icons/normal_.png" alt="normal">
+                            <img src="images/icons/great_.png" alt="great">
+                            <img src="images/icons/prefect_.png" alt="prefect">
+                        </div>
+                    </div>
+                    <div class="col-md-8 item">
+                        <div class="col-md-2 inline-block title"><span>point one</span></div>
+                        <div class="col-md-8 inline-block evalution">
+                            <img src="images/icons/terrible_.png" alt="terrible">
+                            <img src="images/icons/bad_.png" alt="bad">
+                            <img src="images/icons/normal_.png" alt="normal">
+                            <img src="images/icons/great_.png" alt="great">
+                            <img src="images/icons/prefect_.png" alt="prefect">
+                        </div>
+                    </div>
+                    <div>
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
                     </div>
                 </div>
             </div>
