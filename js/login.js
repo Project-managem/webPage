@@ -27,7 +27,7 @@ $(".submit-login input").click(function(event) {
 	.done(function(data) {
 		console.log("success");
 		data=JSON.parse(data);
-		setCookie("id",data.id,1);
+		setCookie("username",data.id,1);
 	})
 	.fail(function() {
 		console.log("error");
@@ -41,7 +41,7 @@ $(".submit-login input").click(function(event) {
 
 //检测状态
 function checkUserState(el){
-	var cookie = getCookie("id");
+	var cookie = getCookie("username");
 	// console.log(cookie);
 	if(cookie ==null){
         // console.log(123);

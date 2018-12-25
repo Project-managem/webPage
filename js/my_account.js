@@ -1,12 +1,596 @@
 //登出
 $("#login_out").click(function () {
-    deleteCookie("id");
+    deleteCookie("username");
+});
+
+/////////////////////////////////////////////////
+/////服务器每个发送的数据格式相同
+/////参考
+// "orders": [
+//     {
+//         "id": "n0001",
+//         "date": "2018",
+//         "method": "Alipay",
+//         "goods": [
+//             {
+//                 "image": "./images/1903/43.jpg",
+//                 "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+//                 "num": "3",
+//                 "price":"60"
+//             },
+//             {
+//                 "image": "./images/1903/43.jpg",
+//                 "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+//                 "num": "4",
+//                 "price":"60"
+//             },
+//         ],
+//         "total": "420",
+//         "state":"Processing"
+//
+//     },
+//     {
+//         "id": "n0002",
+//         "date": "2018",
+//         "method": "Alipay",
+//         "goods": [
+//             {
+//                 "image": "./images/1903/43.jpg",
+//                 "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+//                 "num": "2",
+//                 "price":"60"
+//             }
+//         ],
+//         "total": "120",
+//         "state":"Complete"
+//     },
+//     {
+//         "id": "n0002",
+//         "date": "2018",
+//         "method": "Alipay",
+//         "goods": [
+//             {
+//                 "image": "./images/1903/43.jpg",
+//                 "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+//                 "num": "2",
+//                 "price":"60"
+//             }
+//         ],
+//         "total": "120",
+//         "state":"shipped"
+//     },
+//     {
+//         "id": "n0002",
+//         "date": "2018",
+//         "method": "Alipay",
+//         "goods": [
+//             {
+//                 "image": "./images/1903/43.jpg",
+//                 "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+//                 "num": "2",
+//                 "price":"60"
+//             }
+//         ],
+//         "total": "120",
+//         "state":"Preparing"
+//     }
+// ]
+//
+//客户端发送给服务器端数据格式为
+//{"method":"year"}
+//year 可为 month , week , day
+//对应date:xxxx（一年） , xxxx-xx（一月） , xxxx-xx-xx（一周） , xxxx-xx-xx(每次10天)
+//请将数据按照相应的时间格式发送给我
+//
+//获取每年订单情况
+$("#GetOrderByYear").click(function () {
+    //清空画布
+    $("#account_orders tbody").empty();
+
+    Mock.mock(/\.json/,JSON.stringify({
+        "orders": [
+            {
+                "id": "n0001",
+                "date": "2018",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "3",
+                        "price":"60"
+                    },
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "4",
+                        "price":"60"
+                    },
+                ],
+                "total": "420",
+                "state":"Processing"
+
+            },
+            {
+                "id": "n0002",
+                "date": "2018",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"Complete"
+            },
+            {
+                "id": "n0002",
+                "date": "2018",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"shipped"
+            },
+            {
+                "id": "n0002",
+                "date": "2018",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"Preparing"
+            }
+        ]
+
+    }));
+
+    $.ajax({
+        url: "test.json",
+        timeout: 5000,
+        type: "post",
+        dataType: "json",
+        data: JSON.stringify({"method":"year"}),
+    })
+        .done(function (data) {
+            console.log("success");
+            data=JSON.parse(data);
+            createTable(data);
+
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        })
+});
+//获取每月订单情况
+$("#GetOrderByMonth").click(function () {
+    //清空画布
+    $("#account_orders tbody").empty();
+
+    Mock.mock(/\.json/,JSON.stringify({
+        "orders": [
+            {
+                "id": "n0001",
+                "date": "2018-2",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "3",
+                        "price":"60"
+                    },
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "4",
+                        "price":"60"
+                    },
+                ],
+                "total": "420",
+                "state":"Processing"
+
+            },
+            {
+                "id": "n0002",
+                "date": "2018-2",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"Complete"
+            },
+            {
+                "id": "n0002",
+                "date": "2018",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"shipped"
+            },
+            {
+                "id": "n0002",
+                "date": "2018-2",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"Preparing"
+            }
+        ]
+
+    }));
+
+    $.ajax({
+        url: "test.json",
+        timeout: 5000,
+        type: "post",
+        dataType: "json",
+        data: JSON.stringify({"method":"month"}),
+    })
+        .done(function (data) {
+            console.log("success");
+            data=JSON.parse(data);
+            createTable(data);
+
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        })
+});
+//获取每周订单情况
+$("#GetOrderByWeek").click(function () {
+    //清空画布
+    $("#account_orders tbody").empty();
+
+    Mock.mock(/\.json/,JSON.stringify({
+        "orders": [
+            {
+                "id": "n0001",
+                "date": "2018-2",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "3",
+                        "price":"60"
+                    },
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "4",
+                        "price":"60"
+                    },
+                ],
+                "total": "420",
+                "state":"Processing"
+
+            },
+            {
+                "id": "n0002",
+                "date": "2018-2",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"Complete"
+            },
+            {
+                "id": "n0002",
+                "date": "2018",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"shipped"
+            },
+            {
+                "id": "n0002",
+                "date": "2018-2",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"Preparing"
+            }
+        ]
+
+    }));
+
+    $.ajax({
+        url: "test.json",
+        timeout: 5000,
+        type: "post",
+        dataType: "json",
+        data: JSON.stringify({"method":"week"}),
+    })
+        .done(function (data) {
+            console.log("success");
+            data=JSON.parse(data);
+            createTable(data);
+
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        })
+});
+//获取每日订单情况
+$("#GetOrderByDay").click(function () {
+    //清空画布
+    $("#account_orders tbody").empty();
+
+    Mock.mock(/\.json/,JSON.stringify({
+        "orders": [
+            {
+                "id": "n0001",
+                "date": "2018-2",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "3",
+                        "price":"60"
+                    },
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "4",
+                        "price":"60"
+                    },
+                ],
+                "total": "420",
+                "state":"Processing"
+
+            },
+            {
+                "id": "n0002",
+                "date": "2018-2",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"Complete"
+            },
+            {
+                "id": "n0002",
+                "date": "2018",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"shipped"
+            },
+            {
+                "id": "n0002",
+                "date": "2018-2",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"Preparing"
+            }
+        ]
+
+    }));
+
+    $.ajax({
+        url: "test.json",
+        timeout: 5000,
+        type: "post",
+        dataType: "json",
+        data: JSON.stringify({"method":"day"}),
+    })
+        .done(function (data) {
+            console.log("success");
+            data=JSON.parse(data);
+            createTable(data);
+
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        })
+});
+////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//订单搜索
+//客户端发送给服务端数据参考
+// {
+// "method":"day",
+// "search":"dsaf"
+// }
+//服务端同其他，按日发
+$("#GetOrderBySearch").click(function () {
+
+    var c = $("#account_orders .OrderSearch").val();
+
+    // console.log(c);
+    //清空画布
+    $("#account_orders tbody").empty();
+
+    Mock.mock(/\.json/,JSON.stringify({
+        "orders": [
+            {
+                "id": "n0001",
+                "date": "2018-2",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "3",
+                        "price":"60"
+                    },
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "4",
+                        "price":"60"
+                    },
+                ],
+                "total": "420",
+                "state":"Processing"
+
+            },
+            {
+                "id": "n0002",
+                "date": "2018-2",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"Complete"
+            },
+            {
+                "id": "n0002",
+                "date": "2018",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"shipped"
+            },
+            {
+                "id": "n0002",
+                "date": "2018-2",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"Preparing"
+            }
+        ]
+
+    }));
+
+    $.ajax({
+        url: "test.json",
+        timeout: 5000,
+        type: "post",
+        dataType: "json",
+        data: JSON.stringify({"method":"day","search":c}),
+    })
+        .done(function (data) {
+            console.log("success");
+            data=JSON.parse(data);
+            createTable(data);
+
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        })
 });
 
 
+//从导航进入订单历史表，预加载
 $("#my_account_orders").click(function () {
     //清空画布
-    $("#account_orders .ruler-order").siblings("tr").remove();
+    $("#account_orders tbody").empty();
 
     //改变导航栏样式
     $(this).parent().attr("class", "is-active");
@@ -27,31 +611,64 @@ $("#my_account_orders").click(function () {
                 "image": "./images/1903/43.jpg",
                 "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                 "num": "3",
+                "price":"60"
             },
             {
                 "image": "./images/1903/43.jpg",
                 "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
-                "num": "4"
+                "num": "4",
+                "price":"60"
             },
             ],
-            "total": "100",
-            "state":"processing"
+            "total": "420",
+            "state":"Processing"
 
         },
         {
-            "id": "n0002",
-            "date": "2018-10-3",
-            "method": "Alipay",
-            "goods": [
+                "id": "n0002",
+                "date": "2018-10-3",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"Complete"
+            },
             {
-                "image": "./images/1903/43.jpg",
-                "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
-                "num": "2"
+                "id": "n0002",
+                "date": "2018-10-3",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"shipped"
+            },
+            {
+                "id": "n0002",
+                "date": "2018-10-3",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price":"60"
+                    }
+                ],
+                "total": "120",
+                "state":"Preparing"
             }
-            ],
-            "total": "30",
-            "state":"finish"
-        }
         ]
 
     }));
@@ -112,60 +729,84 @@ function createTable(data) {
             content.setAttribute("class", "content-orders")
 
             var img = document.createElement("td");
-            img.setAttribute("class", "img-orders");
+            img.setAttribute("rowspan", "2");
             var img_img = document.createElement("img");
             img_img.setAttribute("src", data.orders[i].goods[j].image);
             img.appendChild(img_img);
 
             var title = document.createElement("td");
             title.setAttribute("class", "title-orders");
-            title.setAttribute("colspan", "5");
+            title.setAttribute("colspan", "6");
+            title.setAttribute("rowspan","2");
             title.appendChild(document.createTextNode(data.orders[i].goods[j].title));
+
+            var price = document.createElement("td");
+            price.appendChild(document.createTextNode(data.orders[i].goods[j].price));
 
             var number = document.createElement("td");
             number.setAttribute("class", "number-orders");
-            number.appendChild(document.createTextNode(data.orders[i].goods[j].num));
+            number.appendChild(document.createTextNode("x"+data.orders[i].goods[j].num));
 
-            var evalution = document.createElement("td");
-            evalution.setAttribute("class", "evalution-orders");
-            if(data.orders[i].state == "finish"){
-                var evalution_a = document.createElement("a");
-                evalution_a.appendChild(document.createTextNode("evalution"));
-                evalution_a.setAttribute("href", "./evalution_info.html");
-                evalution.appendChild(evalution_a);
-            }
-            else{
-                var processing = document.createElement("a");
-                processing.appendChild(document.createTextNode("processing"));
-                processing.setAttribute("href", "javascript:void(0)");
-                evalution.appendChild(processing);
-            }
-            
+            // var evalution = document.createElement("td");
+            // evalution.setAttribute("class", "evalution-orders");
+            // if(data.orders[i].state == "finish"){
+            //     var evalution_a = document.createElement("a");
+            //     evalution_a.appendChild(document.createTextNode("evalution"));
+            //     evalution_a.setAttribute("href", "./evalution_info.html");
+            //     evalution.appendChild(evalution_a);
+            // }
+            // else{
+            //     var processing = document.createElement("a");
+            //     processing.appendChild(document.createTextNode("processing"));
+            //     processing.setAttribute("href", "javascript:void(0)");
+            //     evalution.appendChild(processing);
+            // }
+
+            var content2 = document.createElement("tr");
+            content2.appendChild(number);
 
             content.appendChild(img);
             content.appendChild(title);
-            content.appendChild(number);
-            content.appendChild(evalution);
+            content.appendChild(price);
+            // content.appendChild(number);
+            // content.appendChild(evalution);
 
             if (j === 0) {
                 var total = document.createElement("td");
                 total.setAttribute("class", "total-money-orders");
-                total.setAttribute("rowspan", data.orders[i].goods.length);
+                total.setAttribute("rowspan", 2*data.orders[i].goods.length);
                 var total_content = document.createTextNode("total:￥" + data.orders[i].total);
                 total.appendChild(total_content);
 
                 var view = document.createElement("td");
                 view.setAttribute("class", "view-orders");
-                view.setAttribute("rowspan", data.orders[i].goods.length);
+                view.setAttribute("rowspan",2* data.orders[i].goods.length);
                 var view_a = document.createElement("a");
-                view_a.appendChild(document.createTextNode("view"));
+                view_a.appendChild(document.createTextNode(data.orders[i].state));
+                if(data.orders[i].state.toLowerCase() =="processing" || data.orders[i].state.toLowerCase() =="preparing"){
+                    view_a.setAttribute("href","#");
+                }
+                else{
+                    view_a.setAttribute("href","evalution-info.html");
+                    view_a.setAttribute("class","toEvalution");
+                    //跳转至评论系统
+                    // view_a.setAttribute("onclick",toEvalution(data.orders[i].id))
+                   view_a.addEventListener("click",function () {
+                       // console.log(data.orders[i].id);
+                       setCookie("id",data.orders[i].id)
+                   });
+                }
                 view.appendChild(view_a);
 
                 content.appendChild(total);
                 content.appendChild(view);
+
             }
 
+
+
             $(table).append(content);
+            $(table).append(content2);
         }//for j
 
     }//for n
@@ -197,6 +838,7 @@ function addItem(id,username, address, tel) {
         $("#account_addresses .address_form .delete_address").each(function (index, el) {
             if (el === obj) {
                 // console.log(index);
+                $(el).attr("id")
                 deleteAddressForm(index, this);
             }
         })

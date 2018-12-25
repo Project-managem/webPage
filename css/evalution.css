@@ -1,25 +1,34 @@
 .inline-block{
     display: inline-block;
 }
-#evalution .item{
+.listings-title{
+    display: block !important;
+}
+
+#evalution .goods-info{
     margin: 2rem 0;
-
 }
-
-#evalution .item .title{
-    height: 50px;
-
+#evalution .goods-info >div textarea{
+    resize: none;
+    font-size: 15px;
+    padding: 1rem;
 }
-
-#evalution .item .title span{
-    line-height: 50px;
-    font-size: 20px;
+#evalution .goods-info  .emoji{
+    margin: 1rem 0;
 }
-
-#evalution .item .evalution{
-
+#evalution .goods-info .emoji >div span{
+   line-height: 50px;
+    font-size: 15px;
 }
-#evalution .item .evalution img{
+#evalution .goods-info .emoji >div img{
     display: inline-block;
-    margin: 0 1rem;
+    margin: 0 0.5rem;
+}
+#evalution .submit input{
+    background-color: #ffaa00;
+    border-radius: 5px;
+    color: white;
+}
+#contents{
+    margin: 3rem 0;
 }
