@@ -11,12 +11,17 @@ $(document).ready(function () {
         "orders": [
             {
                 "img": "images/1903/39-300x300.jpg",
-                "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）"
+                "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                "score":"3",//之前有评论过就发送,score<=5
+                "evalution":"this is prefect"//之前有评论过就发送
             },
             {
                 "img": "images/1903/39-300x300.jpg",
-                "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）"
+                "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                "score":"",//之前有评论过就发送
+                "evalution":""//之前有评论过就发送
             },
+
         ]
     }));
 
@@ -71,18 +76,23 @@ function createOrder(data) {
             "                                </div>\n" +
             "                            </div>\n" +
             "                            <div class=\"row\">\n" +
-            "                                <textarea name=\"\" id=\"\" cols=\"90\" rows=\"10\" placeholder=\"How do you feel ?\"></textarea>\n" +
+            "                                <textarea name=\"\" id=\"\" cols=\"90\" rows=\"10\" placeholder=\"How do you feel ?\">"+data.orders[i].evalution+"</textarea>\n" +
             "                            </div>\n" +
             "                        </div>\n" +
             "                    </div>");
 
-        //设置Emoji
         $("#evalution .goods-info .emoji").last().find("img").each(function (index, el) {
             var objs = $("#evalution .goods-info .emoji").last().find("img");
+
+            //初始化emoji数据
+            if(index<data.orders[i].score){
+                $(this).attr("src", $(this).attr("src").replace("_", ""));
+                // console.log(123);
+            }
+
+            //设置Emoji事件
             $(el).click(function () {
                 // console.log(index);
-                // $(this).prevAll("img").attr("src").replace("_", "");
-                // $(this).nextAll("img").replace(".png", "_.png");
                 for (var i = 0; i <= index; i++) {
                     objs.eq(i).attr("src", objs.eq(i).attr("src").replace("_", ""));
                 }//for
@@ -95,9 +105,22 @@ function createOrder(data) {
                 $(el).parent("div").attr("name",index);
                 console.log($(el).parent("div").attr("name"));
             })//click
-        });
+        });//each
+
+        //检查该订单是否已经评论，已经评论则关闭评论功能
+        if(data.orders[i].score !=""){
+            $("#evalution .goods-info .emoji").last().find("img").off("click");
+            console.log(123);
+            $("#evalution .goods-info").last().find("textarea").attr("readonly","readonly");
+        }
 
     }//for
+
+    //检查该订单是否已经评论，已经评论则关闭提交功能
+    if(data.orders[0].score !="") {
+        $("#evalution .submit input").attr("disabled","disabled");
+        $("#evalution .submit input").css("background-color","gray");
+    }
 }
 
 //提交用户评论
