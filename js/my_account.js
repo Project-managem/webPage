@@ -1,8 +1,11 @@
-//登出
+///////////////////////////////////
+// 登出
 $("#login_out").click(function () {
     deleteCookie("username");
 });
 
+
+////////////////////////////////////////////////////
 /////////////////////////////////////////////////
 /////服务器每个发送的数据格式相同
 /////参考
@@ -87,7 +90,7 @@ $("#GetOrderByYear").click(function () {
     //清空画布
     $("#account_orders tbody").empty();
 
-    Mock.mock(/\.json/,JSON.stringify({
+    Mock.mock(/\.json/, JSON.stringify({
         "orders": [
             {
                 "id": "n0001",
@@ -98,17 +101,17 @@ $("#GetOrderByYear").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "3",
-                        "price":"60"
+                        "price": "60"
                     },
                     {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "4",
-                        "price":"60"
+                        "price": "60"
                     },
                 ],
                 "total": "420",
-                "state":"Processing"
+                "state": "Processing"
 
             },
             {
@@ -120,11 +123,11 @@ $("#GetOrderByYear").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "2",
-                        "price":"60"
+                        "price": "60"
                     }
                 ],
                 "total": "120",
-                "state":"Complete"
+                "state": "Complete"
             },
             {
                 "id": "n0002",
@@ -135,11 +138,11 @@ $("#GetOrderByYear").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "2",
-                        "price":"60"
+                        "price": "60"
                     }
                 ],
                 "total": "120",
-                "state":"shipped"
+                "state": "shipped"
             },
             {
                 "id": "n0002",
@@ -150,11 +153,11 @@ $("#GetOrderByYear").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "2",
-                        "price":"60"
+                        "price": "60"
                     }
                 ],
                 "total": "120",
-                "state":"Preparing"
+                "state": "Preparing"
             }
         ]
 
@@ -165,11 +168,11 @@ $("#GetOrderByYear").click(function () {
         timeout: 5000,
         type: "post",
         dataType: "json",
-        data: JSON.stringify({"method":"year"}),
+        data: JSON.stringify({"method": "year"}),
     })
         .done(function (data) {
             console.log("success");
-            data=JSON.parse(data);
+            data = JSON.parse(data);
             createTable(data);
 
         })
@@ -185,7 +188,7 @@ $("#GetOrderByMonth").click(function () {
     //清空画布
     $("#account_orders tbody").empty();
 
-    Mock.mock(/\.json/,JSON.stringify({
+    Mock.mock(/\.json/, JSON.stringify({
         "orders": [
             {
                 "id": "n0001",
@@ -196,17 +199,17 @@ $("#GetOrderByMonth").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "3",
-                        "price":"60"
+                        "price": "60"
                     },
                     {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "4",
-                        "price":"60"
+                        "price": "60"
                     },
                 ],
                 "total": "420",
-                "state":"Processing"
+                "state": "Processing"
 
             },
             {
@@ -218,11 +221,11 @@ $("#GetOrderByMonth").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "2",
-                        "price":"60"
+                        "price": "60"
                     }
                 ],
                 "total": "120",
-                "state":"Complete"
+                "state": "Complete"
             },
             {
                 "id": "n0002",
@@ -233,11 +236,11 @@ $("#GetOrderByMonth").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "2",
-                        "price":"60"
+                        "price": "60"
                     }
                 ],
                 "total": "120",
-                "state":"shipped"
+                "state": "shipped"
             },
             {
                 "id": "n0002",
@@ -248,11 +251,11 @@ $("#GetOrderByMonth").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "2",
-                        "price":"60"
+                        "price": "60"
                     }
                 ],
                 "total": "120",
-                "state":"Preparing"
+                "state": "Preparing"
             }
         ]
 
@@ -263,11 +266,11 @@ $("#GetOrderByMonth").click(function () {
         timeout: 5000,
         type: "post",
         dataType: "json",
-        data: JSON.stringify({"method":"month"}),
+        data: JSON.stringify({"method": "month"}),
     })
         .done(function (data) {
             console.log("success");
-            data=JSON.parse(data);
+            data = JSON.parse(data);
             createTable(data);
 
         })
@@ -283,7 +286,7 @@ $("#GetOrderByWeek").click(function () {
     //清空画布
     $("#account_orders tbody").empty();
 
-    Mock.mock(/\.json/,JSON.stringify({
+    Mock.mock(/\.json/, JSON.stringify({
         "orders": [
             {
                 "id": "n0001",
@@ -294,17 +297,17 @@ $("#GetOrderByWeek").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "3",
-                        "price":"60"
+                        "price": "60"
                     },
                     {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "4",
-                        "price":"60"
+                        "price": "60"
                     },
                 ],
                 "total": "420",
-                "state":"Processing"
+                "state": "Processing"
 
             },
             {
@@ -316,11 +319,11 @@ $("#GetOrderByWeek").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "2",
-                        "price":"60"
+                        "price": "60"
                     }
                 ],
                 "total": "120",
-                "state":"Complete"
+                "state": "Complete"
             },
             {
                 "id": "n0002",
@@ -331,11 +334,11 @@ $("#GetOrderByWeek").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "2",
-                        "price":"60"
+                        "price": "60"
                     }
                 ],
                 "total": "120",
-                "state":"shipped"
+                "state": "shipped"
             },
             {
                 "id": "n0002",
@@ -346,11 +349,11 @@ $("#GetOrderByWeek").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "2",
-                        "price":"60"
+                        "price": "60"
                     }
                 ],
                 "total": "120",
-                "state":"Preparing"
+                "state": "Preparing"
             }
         ]
 
@@ -361,11 +364,11 @@ $("#GetOrderByWeek").click(function () {
         timeout: 5000,
         type: "post",
         dataType: "json",
-        data: JSON.stringify({"method":"week"}),
+        data: JSON.stringify({"method": "week"}),
     })
         .done(function (data) {
             console.log("success");
-            data=JSON.parse(data);
+            data = JSON.parse(data);
             createTable(data);
 
         })
@@ -381,7 +384,7 @@ $("#GetOrderByDay").click(function () {
     //清空画布
     $("#account_orders tbody").empty();
 
-    Mock.mock(/\.json/,JSON.stringify({
+    Mock.mock(/\.json/, JSON.stringify({
         "orders": [
             {
                 "id": "n0001",
@@ -392,17 +395,17 @@ $("#GetOrderByDay").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "3",
-                        "price":"60"
+                        "price": "60"
                     },
                     {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "4",
-                        "price":"60"
+                        "price": "60"
                     },
                 ],
                 "total": "420",
-                "state":"Processing"
+                "state": "Processing"
 
             },
             {
@@ -414,11 +417,11 @@ $("#GetOrderByDay").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "2",
-                        "price":"60"
+                        "price": "60"
                     }
                 ],
                 "total": "120",
-                "state":"Complete"
+                "state": "Complete"
             },
             {
                 "id": "n0002",
@@ -429,11 +432,11 @@ $("#GetOrderByDay").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "2",
-                        "price":"60"
+                        "price": "60"
                     }
                 ],
                 "total": "120",
-                "state":"shipped"
+                "state": "shipped"
             },
             {
                 "id": "n0002",
@@ -444,11 +447,11 @@ $("#GetOrderByDay").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "2",
-                        "price":"60"
+                        "price": "60"
                     }
                 ],
                 "total": "120",
-                "state":"Preparing"
+                "state": "Preparing"
             }
         ]
 
@@ -459,11 +462,11 @@ $("#GetOrderByDay").click(function () {
         timeout: 5000,
         type: "post",
         dataType: "json",
-        data: JSON.stringify({"method":"day"}),
+        data: JSON.stringify({"method": "day"}),
     })
         .done(function (data) {
             console.log("success");
-            data=JSON.parse(data);
+            data = JSON.parse(data);
             createTable(data);
 
         })
@@ -492,7 +495,7 @@ $("#GetOrderBySearch").click(function () {
     //清空画布
     $("#account_orders tbody").empty();
 
-    Mock.mock(/\.json/,JSON.stringify({
+    Mock.mock(/\.json/, JSON.stringify({
         "orders": [
             {
                 "id": "n0001",
@@ -503,17 +506,17 @@ $("#GetOrderBySearch").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "3",
-                        "price":"60"
+                        "price": "60"
                     },
                     {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "4",
-                        "price":"60"
+                        "price": "60"
                     },
                 ],
                 "total": "420",
-                "state":"Processing"
+                "state": "Processing"
 
             },
             {
@@ -525,11 +528,11 @@ $("#GetOrderBySearch").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "2",
-                        "price":"60"
+                        "price": "60"
                     }
                 ],
                 "total": "120",
-                "state":"Complete"
+                "state": "Complete"
             },
             {
                 "id": "n0002",
@@ -540,11 +543,11 @@ $("#GetOrderBySearch").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "2",
-                        "price":"60"
+                        "price": "60"
                     }
                 ],
                 "total": "120",
-                "state":"shipped"
+                "state": "shipped"
             },
             {
                 "id": "n0002",
@@ -555,11 +558,11 @@ $("#GetOrderBySearch").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "2",
-                        "price":"60"
+                        "price": "60"
                     }
                 ],
                 "total": "120",
-                "state":"Preparing"
+                "state": "Preparing"
             }
         ]
 
@@ -570,11 +573,11 @@ $("#GetOrderBySearch").click(function () {
         timeout: 5000,
         type: "post",
         dataType: "json",
-        data: JSON.stringify({"method":"day","search":c}),
+        data: JSON.stringify({"method": "day", "search": c}),
     })
         .done(function (data) {
             console.log("success");
-            data=JSON.parse(data);
+            data = JSON.parse(data);
             createTable(data);
 
         })
@@ -585,7 +588,6 @@ $("#GetOrderBySearch").click(function () {
             console.log("complete");
         })
 });
-
 
 //从导航进入订单历史表，预加载
 $("#my_account_orders").click(function () {
@@ -600,44 +602,29 @@ $("#my_account_orders").click(function () {
     $("#account_orders").attr("class", "show-state");
     $("#account_orders").siblings().attr("class", "hidden-state");
 
-    Mock.mock(/\.json/,JSON.stringify({
+    Mock.mock(/\.json/, JSON.stringify({
         "orders": [
-        {
-            "id": "n0001",
-            "date": "2018-10-3",
-            "method": "Alipay",
-            "goods": [
             {
-                "image": "./images/1903/43.jpg",
-                "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
-                "num": "3",
-                "price":"60"
-            },
-            {
-                "image": "./images/1903/43.jpg",
-                "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
-                "num": "4",
-                "price":"60"
-            },
-            ],
-            "total": "420",
-            "state":"Processing"
+                "id": "n0001",
+                "date": "2018-10-3",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "3",
+                        "price": "60"
+                    },
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "4",
+                        "price": "60"
+                    },
+                ],
+                "total": "420",
+                "state": "Processing"
 
-        },
-        {
-                "id": "n0002",
-                "date": "2018-10-3",
-                "method": "Alipay",
-                "goods": [
-                    {
-                        "image": "./images/1903/43.jpg",
-                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
-                        "num": "2",
-                        "price":"60"
-                    }
-                ],
-                "total": "120",
-                "state":"Complete"
             },
             {
                 "id": "n0002",
@@ -648,11 +635,11 @@ $("#my_account_orders").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "2",
-                        "price":"60"
+                        "price": "60"
                     }
                 ],
                 "total": "120",
-                "state":"shipped"
+                "state": "Complete"
             },
             {
                 "id": "n0002",
@@ -663,11 +650,41 @@ $("#my_account_orders").click(function () {
                         "image": "./images/1903/43.jpg",
                         "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
                         "num": "2",
-                        "price":"60"
+                        "price": "60"
                     }
                 ],
                 "total": "120",
-                "state":"Preparing"
+                "state": "shipped"
+            },
+            {
+                "id": "n0002",
+                "date": "2018-10-3",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price": "60"
+                    }
+                ],
+                "total": "120",
+                "state": "Preparing"
+            },
+            {
+                "id": "n0002",
+                "date": "2018-10-3",
+                "method": "Alipay",
+                "goods": [
+                    {
+                        "image": "./images/1903/43.jpg",
+                        "title": "马来西亚进口 特丽娜（D'Reena）芒果果肉饮料 芒果果汁 240ml*6（6罐装）",
+                        "num": "2",
+                        "price": "60"
+                    }
+                ],
+                "total": "120",
+                "state": "Return"
             }
         ]
 
@@ -680,18 +697,18 @@ $("#my_account_orders").click(function () {
         dataType: "json",
         data: "order",
     })
-    .done(function (data) {
-        console.log("success");
-        data=JSON.parse(data);
-        createTable(data);
+        .done(function (data) {
+            console.log("success");
+            data = JSON.parse(data);
+            createTable(data);
 
-    })
-    .fail(function () {
-        console.log("error");
-    })
-    .always(function () {
-        console.log("complete");
-    })
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        })
 });
 
 //创建用户订单表
@@ -737,7 +754,7 @@ function createTable(data) {
             var title = document.createElement("td");
             title.setAttribute("class", "title-orders");
             title.setAttribute("colspan", "6");
-            title.setAttribute("rowspan","2");
+            title.setAttribute("rowspan", "2");
             title.appendChild(document.createTextNode(data.orders[i].goods[j].title));
 
             var price = document.createElement("td");
@@ -745,7 +762,7 @@ function createTable(data) {
 
             var number = document.createElement("td");
             number.setAttribute("class", "number-orders");
-            number.appendChild(document.createTextNode("x"+data.orders[i].goods[j].num));
+            number.appendChild(document.createTextNode("x" + data.orders[i].goods[j].num));
 
             // var evalution = document.createElement("td");
             // evalution.setAttribute("class", "evalution-orders");
@@ -774,27 +791,40 @@ function createTable(data) {
             if (j === 0) {
                 var total = document.createElement("td");
                 total.setAttribute("class", "total-money-orders");
-                total.setAttribute("rowspan", 2*data.orders[i].goods.length);
+                total.setAttribute("rowspan", 2 * data.orders[i].goods.length);
                 var total_content = document.createTextNode("total:￥" + data.orders[i].total);
                 total.appendChild(total_content);
 
                 var view = document.createElement("td");
                 view.setAttribute("class", "view-orders");
-                view.setAttribute("rowspan",2* data.orders[i].goods.length);
+                view.setAttribute("rowspan", 2 * data.orders[i].goods.length);
                 var view_a = document.createElement("a");
                 view_a.appendChild(document.createTextNode(data.orders[i].state));
-                if(data.orders[i].state.toLowerCase() =="processing" || data.orders[i].state.toLowerCase() =="preparing"){
-                    view_a.setAttribute("href","#");
+                if (data.orders[i].state.toLowerCase() == "return" || data.orders[i].state.toLowerCase() == "preparing") {
+                    view_a.setAttribute("href", "javascript:void(0)");
                 }
-                else{
-                    view_a.setAttribute("href","evalution-info.html");
-                    view_a.setAttribute("class","toEvalution");
+                else if(data.orders[i].state.toLowerCase() == "processing"){
+                    //此处跳转至支付页面
+                    view_a.setAttribute("href", "#");
+                }
+                else if (data.orders[i].state.toLowerCase() == "shipped") {
+                    view_a.setAttribute("href", "#checkGoods");
+                    view_a.setAttribute("data-toggle", "modal");
+                    // view_a.setAttribute("data-target","#checkGoods")
+                    view_a.addEventListener("click", function () {
+                        // console.log(data.orders[i].id);
+                        setCookie("id", data.orders[i].id);
+                    });
+                }
+                else {
+                    view_a.setAttribute("href", "evalution-info.html");
+                    view_a.setAttribute("class", "toEvalution");
                     //跳转至评论系统
                     // view_a.setAttribute("onclick",toEvalution(data.orders[i].id))
-                   view_a.addEventListener("click",function () {
-                       // console.log(data.orders[i].id);
-                       setCookie("id",data.orders[i].id)
-                   });
+                    view_a.addEventListener("click", function () {
+                        // console.log(data.orders[i].id);
+                        setCookie("id", data.orders[i].id)
+                    });
                 }
                 view.appendChild(view_a);
 
@@ -804,7 +834,6 @@ function createTable(data) {
             }
 
 
-
             $(table).append(content);
             $(table).append(content2);
         }//for j
@@ -812,14 +841,75 @@ function createTable(data) {
     }//for n
 }
 
+//收货
+$("#ReceiveCommodity").click(function () {
+    var id = getCookie("id");
+    deleteCookie("id");
+    $("#account_orders tbody .id-orders").each(function (index, el) {
+        if ($(el).text() == "Order ID:" + id) {
+            var a = $(el).parent("tr").next("tr").find("a");
+            $(a).text("Complete");
+            $(a).removeAttr("data-toggle");
+            // $(a).removeAttr("data-target");
+            $(a).attr("href", "evalution-info.html");
+            $(a).attr("class", "toEvalution");
+        }
+    });
+
+});
+
+////////////////////////
+//退货
+//客户端发送给服务器数据格式例子
+// {
+//     "id": Goods_id 如 n123
+// }
+//不需要返回数据
+//注意退货成功后，订单状态为Return，订单列表刷新或初始化时改变
+$("#ReturnCommodity").click(function () {
+    var id = getCookie("id");
+    deleteCookie("id");
+    $("#account_orders tbody .id-orders").each(function (index, el) {
+        if ($(el).text() == "Order ID:" + id) {
+            var a = $(el).parent("tr").next("tr").find("a");
+            $(a).text("Prcessing");
+            $(a).removeAttr("data-toggle");
+            // $(a).removeAttr("data-target");
+            $(a).attr("href", "javascript:void(0)");
+            // $(a).attr("class","toEvalution");
+
+            //发送退货订单号
+            var send = {"id":id};
+
+            $.ajax({
+                url: "test.json",
+                dataType: "json",
+                type: "post",
+                timeout: 5000,
+                data: JSON.stringify(send)
+            })
+                .done(function (data) {
+                    console.log("success");
+                    // console.log(data)
+                    // data = JSON.parse(data);
+                })
+                .fail(function () {
+                    console.log("error");
+                })
+                .always(function () {
+                    console.log("complete");
+                })
+        }
+    });
+});
+/////////////////////////////////////////////////////////////////////////////////
 //地址信息管理
 
 //用户添加地址_事件函数
-function addItem(id,username, address, tel) {
+function addItem(id, username, address, tel) {
 
 
-
-    $("#account_addresses .address_form").append("<div class=\"address-item-style shadow p-3 mb-5 bg-white rounded\" id='"+id+"'>\n" +
+    $("#account_addresses .address_form").append("<div class=\"address-item-style shadow p-3 mb-5 bg-white rounded\" id='" + id + "'>\n" +
         "                                                    <a href=\"javascript:void(0)\" class=\"reset_address\">\n" +
         "                                                        <img src=\"./images/icons/geer.png\"/></a>\n" +
         "                                                    <a href=\"javascript:void(0)\" class=\"delete_address\">\n" +
@@ -831,8 +921,8 @@ function addItem(id,username, address, tel) {
         "                                                    <input class=\"address_tel\" type=\"text\" value=\"" + tel + "\" />\n" +
         "                                                </div>");
 
-     //添加删除事件
-     $("#account_addresses .address_form .delete_address").last().on("click", function () {
+    //添加删除事件
+    $("#account_addresses .address_form .delete_address").last().on("click", function () {
         // alert(this.tagName);
         var obj = this;
         $("#account_addresses .address_form .delete_address").each(function (index, el) {
@@ -857,10 +947,10 @@ function addItem(id,username, address, tel) {
     });
 }
 
-    //用户添加地址_事件
-    $(".woocommerce-MyAccount-content #add_address_items").click(function () {
-        addItem("","", "", "");
-    });
+//用户添加地址_事件
+$(".woocommerce-MyAccount-content #add_address_items").click(function () {
+    addItem("", "", "", "");
+});
 
 //预加载用户地址数据
 //接收用户address 数据
@@ -883,21 +973,20 @@ $("#my_account_addresses").click(function () {
     $("#account_addresses").siblings().attr("class", "hidden-state");
 
 
-
     Mock.mock(/\.json/, JSON.stringify({
         "obj":
-        [{
-            "id": 1,
-            "username": "zhang san",
-            "address": "xxxxxxx",
-            "tel": "123123123"
-        },
-        {
-            "id": 2,
-            "username": "wang wu",
-            "address": "xxxxxxx",
-            "tel": "123123123"
-        }]
+            [{
+                "id": 1,
+                "username": "zhang san",
+                "address": "xxxxxxx",
+                "tel": "123123123"
+            },
+                {
+                    "id": 2,
+                    "username": "wang wu",
+                    "address": "xxxxxxx",
+                    "tel": "123123123"
+                }]
     }));
 
     $.ajax({
@@ -908,22 +997,22 @@ $("#my_account_addresses").click(function () {
         dataType: "json",
         data: "Address"
     })
-    .done(function (data) {
-        console.log("success");
-        data=JSON.parse(data);
-        for (let i = 0; i < data.obj.length; i++) {
-            addItem(data.obj[i].id,data.obj[i].username, data.obj[i].address, data.obj[i].tel);
+        .done(function (data) {
+            console.log("success");
+            data = JSON.parse(data);
+            for (let i = 0; i < data.obj.length; i++) {
+                addItem(data.obj[i].id, data.obj[i].username, data.obj[i].address, data.obj[i].tel);
 
-            $("#account_addresses .address_form").find("input").attr("disabled", "disabled");
-            $("#account_addresses .address_form").find("textarea").attr("disabled", "disabled");
-        }
-    })
-    .fail(function () {
-        console.log("error");
-    })
-    .always(function () {
-        console.log("complete");
-    })
+                $("#account_addresses .address_form").find("input").attr("disabled", "disabled");
+                $("#account_addresses .address_form").find("textarea").attr("disabled", "disabled");
+            }
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        })
 
 })
 
@@ -945,18 +1034,18 @@ function deleteAddressForm(index, el) {
         timeout: 5000,
         type: "post",
         dataType: "json",
-        data:JSON.stringify(id)
+        data: JSON.stringify(id)
     })
-    .done(function () {
-        console.log("success");
-        $(el).parent("div").remove();
-    })
-    .fail(function () {
-        console.log("error");
-    })
-    .always(function () {
-        console.log("complete");
-    })
+        .done(function () {
+            console.log("success");
+            $(el).parent("div").remove();
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        })
 }
 
 // 修改地址
@@ -978,7 +1067,7 @@ function resetAddressForm(index, el) {
     //     "id":"1"
     // }
     Mock.mock(/\.json/, {
-        "id|1-100":1
+        "id|1-100": 1
     });
 
     if ($(el).siblings("input").attr("disabled") == "disabled") {
@@ -1003,20 +1092,20 @@ function resetAddressForm(index, el) {
             dataType: "json",
             data: data,
         })
-        .done(function (data) {
-            console.log("success");
+            .done(function (data) {
+                console.log("success");
                 // data=JSON.parse(data);
                 $(el).siblings("input").attr("disabled", "disabled");
                 $(el).siblings("textarea").attr("disabled", "disabled");
 
-                $(el).parent("div").attr("id",data.id);
+                $(el).parent("div").attr("id", data.id);
             })
-        .fail(function () {
-            console.log("error");
-        })
-        .always(function () {
-            console.log("complete");
-        })
+            .fail(function () {
+                console.log("error");
+            })
+            .always(function () {
+                console.log("complete");
+            })
     }
 }
 
@@ -1042,7 +1131,7 @@ $("#my_account_detail").click(function () {
 
     var id = getCookie("id");
     //例示数据
-    Mock.mock(/\.json/,JSON.stringify( {
+    Mock.mock(/\.json/, JSON.stringify({
         "CustomerName": "Zhang San",
         "email": "123@123.com",
         "telephone": "123"
@@ -1056,42 +1145,42 @@ $("#my_account_detail").click(function () {
         type: "post",
         data: id
     })
-    .done(function (data) {
-        console.log("success");
+        .done(function (data) {
+            console.log("success");
             // console.log(data)
-            data=JSON.parse(data);
+            data = JSON.parse(data);
             $("#inputCustomerName").val(data.CustomerName);
             $("#inputEmail").val(data.email);
             $("#inputTel").val(data.telephone);
         })
-    .fail(function () {
-        console.log("error");
-    })
-    .always(function () {
-        console.log("complete");
-    })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        })
 });
 
 //修改个人信息
-$("#inputResetSelfinfo").click(function(event) {
+$("#inputResetSelfinfo").click(function (event) {
     /* Act on the event */
     $("#inputCustomerName").removeAttr('readonly');
     $("#inputEmail").removeAttr('readonly');
     $("#inputTel").removeAttr('readonly');
 
-    $(this).css("display","none");
-    $("#inputSubmitSelfinfo").css("display","block");
+    $(this).css("display", "none");
+    $("#inputSubmitSelfinfo").css("display", "block");
 });
 
 //提交个人信息
-$("#inputSubmitSelfinfo").click(function(event) {
+$("#inputSubmitSelfinfo").click(function (event) {
     /* Act on the event */
     var username = $("#inputCustomerName").val();
     var email = $("#inputEmail").val();
     var tel = $("#inputTel").val();
 
     var send = {
-        "CustomerName":username,
+        "CustomerName": username,
         "email": email,
         "telephone": tel
     }
@@ -1102,22 +1191,22 @@ $("#inputSubmitSelfinfo").click(function(event) {
         dataType: 'JSON',
         data: JSON.stringify(send),
     })
-    .done(function() {
-        console.log("success");
+        .done(function () {
+            console.log("success");
 
-        $("#inputCustomerName").attr('readonly',"readonly");
-        $("#inputEmail").attr('readonly',"readonly");
-        $("#inputTel").attr('readonly',"readonly");
-        $("#inputSubmitSelfinfo").css("display","none");
-        $("#inputResetSelfinfo").css("display","block");
-    })
-    .fail(function() {
-        console.log("error");
-    })
-    .always(function() {
-        console.log("complete");
-    });
-    
+            $("#inputCustomerName").attr('readonly', "readonly");
+            $("#inputEmail").attr('readonly', "readonly");
+            $("#inputTel").attr('readonly', "readonly");
+            $("#inputSubmitSelfinfo").css("display", "none");
+            $("#inputResetSelfinfo").css("display", "block");
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        });
+
 });
 
 //提交修改密码
@@ -1147,9 +1236,9 @@ $("#inputSubmitPasswordChange").click(function () {
     }
 
     //发送后端数据格式
-    var send ={
-        "old_password":old_password,
-        "new_password":password
+    var send = {
+        "old_password": old_password,
+        "new_password": password
     }
 
     //例示数据
@@ -1162,18 +1251,18 @@ $("#inputSubmitPasswordChange").click(function () {
         type: "post",
         data: JSON.stringify(send)
     })
-    .done(function (data) {
-        console.log("success");
-        data=JSON.parse(data);
-        alert("succeeding submitting your form");
-        window.location.href = "my_account.html"
-    })
-    .fail(function () {
-        console.log("error");
-    })
-    .always(function () {
-        console.log("complete");
-    })
+        .done(function (data) {
+            console.log("success");
+            data = JSON.parse(data);
+            alert("succeeding submitting your form");
+            window.location.href = "my_account.html"
+        })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        })
 });
 
 // 获取cookie

@@ -110,7 +110,7 @@ function createOrder(data) {
         //检查该订单是否已经评论，已经评论则关闭评论功能
         if(data.orders[i].score !=""){
             $("#evalution .goods-info .emoji").last().find("img").off("click");
-            console.log(123);
+            // console.log(123);
             $("#evalution .goods-info").last().find("textarea").attr("readonly","readonly");
         }
 

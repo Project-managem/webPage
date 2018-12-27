@@ -195,10 +195,10 @@
                                                 <button type="button" class="btn btn-warning" id="GetOrderByWeek">Weekly</button>
                                                 <button type="button" class="btn btn-primary" id="GetOrderByDay">Daily</button>
                                                 <button type="Submit" class="btn btn-danger" id="GetOrderBySearch">Submit</button>
-                                                <input type="text" class="OrderSearch">
+                                                <input type="search" class="OrderSearch" placeholder="search history">
                                             </div>
                                             <table class="account-order  table-bordered">
-                                                <thead class="ruler-order">
+                                                <thead class="ruler-order" role="search">
                                                 <tr>
                                                     <td></td>
                                                     <td></td>
@@ -212,10 +212,25 @@
                                                     <td></td>
                                                 </tr>
                                                 </thead>
-
                                                 <tbody>
                                                 </tbody>
                                             </table>
+
+                                            <div class="modal fade" id="checkGoods" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            <h4 class="modal-title" id="myModalLabel">Check Your Order</h4>
+                                                        </div>
+                                                        <div class="modal-body">Please checking whether receiving commodities or backing it</div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger" id="ReturnCommodity" data-dismiss="modal">Return</button>
+                                                            <button type="button" class="btn btn-primary" id="ReceiveCommodity" data-dismiss="modal">Receive</button>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal -->
+                                            </div>
                                         </div>
                                         <div class="hidden-state" id="account_addresses">
                                                 <span>The following address will be used on the checkout ( the first address
